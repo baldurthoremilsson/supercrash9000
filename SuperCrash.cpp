@@ -1,13 +1,11 @@
-#include <iostream>
 #include <GL/glut.h>
 #include "SuperCrash.h"
 
-
 SuperCrash::SuperCrash() {
-		// constructor
+	// constructor
 }
 SuperCrash::~SuperCrash() {
-		// delete everything! mwahahaha
+	// delete everything! mwahahaha
 }
 
 void SuperCrash::keyboardUp(int i) {

@@ -8,7 +8,9 @@ class SuperObject {
 		virtual void display() = NULL;
 		virtual void update(int tick) = NULL;
 		virtual void keyboard(unsigned char key, int x, int y) = NULL;
+		virtual void keyboardUp(unsigned char key, int x, int y) = NULL;
 		virtual void specialKey(int key, int x, int y) = NULL;
+		virtual void specialKeyUp(int key, int x, int y) = NULL;
 };
 
 #endif
