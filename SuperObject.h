@@ -7,10 +7,10 @@ class SuperObject {
 	public:
 		virtual void display() = NULL;
 		virtual void update(int tick) = NULL;
-		virtual void keyboard(unsigned char key, int x, int y) = NULL;
-		virtual void keyboardUp(unsigned char key, int x, int y) = NULL;
-		virtual void specialKey(int key, int x, int y) = NULL;
-		virtual void specialKeyUp(int key, int x, int y) = NULL;
+		virtual void keyboardUp(unsigned char key) = NULL;
+		virtual void keyboardDown(unsigned char key) = NULL;
+		virtual void keyboardSpecialUp(int key) = NULL;
+		virtual void keyboardSpecialDown(int key) = NULL;
 };
 
 #endif
