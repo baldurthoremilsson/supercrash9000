@@ -1,39 +1,38 @@
 #include <iostream>
 #include <GL/glut.h>
-#include <Menu.cpp>
-#include <Pause.cpp>
-#include <SuperGame.cpp>
+#include "SuperCrash.h"
 
-class SuperCrash {
-	private:
-		//Menu m;
-		//Pause p;
-		SuperGame game;
-		int state; // t.d. 0=menu, 1=game 2=paused.. ??
-	public:
-		// public breytur hér
 
-	SuperCrash() {
+SuperCrash::SuperCrash() {
 		// constructor
-		state = 1; // byrjum í game til að byrja með...
-	}
-	~SuperCrash() {
-		// destructor
-	}
-	void display() {
-		switch (state) {
+}
+SuperCrash::~SuperCrash() {
+		// delete everything! mwahahaha
+}
+
+void SuperCrash::keyboardUp(int i) {
+	// Bregðast við lykli og senda annaðhvort í game eða menu
+}
+void SuperCrash::keyboardDown(int i) {
+	// Bregðast við lykli og senda annaðhvort í game eða menu
+}
+void SuperCrash::keyboardSpecialUp(unsigned char c) {
+	// Bregðast við lykli og senda annaðhvort í game eða menu
+}
+void SuperCrash::keyboardSpecialDown(unsigned char c) {
+	// Bregðast við lykli og senda annaðhvort í game eða menu
+}
+void SuperCrash::display() {
+		/*switch (state) {
 			case 0:
-				/*m.display(); ?????*/break;
+				m.display(); break;
 			case 1:
 				game.display(); break;
 			case 2:
 				// ????
-		}
-		std::cout << "Ímyndum okkur að skjárinn sé teiknaður... trallala\n";
-	}
-	void keyboard() {}
-
-};
+		}*/
+		std::cout << "  SuperCrash teiknar!  \n";
+}
 
 
 
