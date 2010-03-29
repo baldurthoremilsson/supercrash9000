@@ -29,10 +29,18 @@ SuperEngine::SuperEngine() {
 	
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
+	
+	FPS = 30;
 }
 
 SuperEngine::~SuperEngine() {
 }
+
+void SuperEngine::sleep() {
+	// sleep(1000.0/FPS + lastUpdate - glutGet(GLUT_ELAPSED_TIME))
+	lastUpdate = glutGet(GLUT_ELAPSED_TIME);
+}
+
 
 void SuperEngine::SEdisplay() {
 	SuperEngine::instance->display();

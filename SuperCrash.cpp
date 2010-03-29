@@ -24,8 +24,9 @@ void SuperCrash::display() {
 }
 
 void SuperCrash::update(int time) {
-	current->update(time);
+	current->update(time - lastUpdate);
 	glutPostRedisplay();
+	sleep();
 }
 
 void SuperCrash::keyboardUp(unsigned char key) {
