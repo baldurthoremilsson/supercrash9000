@@ -5,12 +5,12 @@
 
 class SuperObject {
 	public:
-		virtual void display() = NULL;
-		virtual void update(int tick) = NULL;
-		virtual void keyboardUp(unsigned char key) = NULL;
-		virtual void keyboardDown(unsigned char key) = NULL;
-		virtual void keyboardSpecialUp(int key) = NULL;
-		virtual void keyboardSpecialDown(int key) = NULL;
+		virtual void display() = 0;
+		virtual void update(int time) = 0;
+		virtual void keyboardUp(unsigned char key) = 0;
+		virtual void keyboardDown(unsigned char key) = 0;
+		virtual void keyboardSpecialUp(int key) = 0;
+		virtual void keyboardSpecialDown(int key) = 0;
 };
 
 #endif

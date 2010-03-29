@@ -3,27 +3,28 @@
 #ifndef _SUPERCRASH_H
 #define _SUPERCRASH_H
 
-enum GameState {
-	MENU,
-	GAME,
-	PAUSE,
-	QUIT
-};
+#include "SuperEngine.h"
+#include "SuperGame.h"
+//#include "MainMenu.h"
+//#include "PauseMenu.h"
 
 //Tilvik af SuperCrash stendur fyrir eintak af leiknum
-class SuperCrash {
-	private:
-		void keyboardUp(int i);
-		void keyboardDown(int i);
-		void keyboardSpecialUp(unsigned char c);
-		void keyboardSpecialDown(unsigned char c);
-		void display();
-		
-		int state; // t.d. 0=menu, 1=game 2=paused.. ??
+class SuperCrash: public SuperEngine {
+	protected:
+		SuperGame *superGame;
+		//MainMenu *mainMenu;
+		//PauseMenu *pauseMenu;
+		SuperObject *current;
 	public:
 		SuperCrash();
 		~SuperCrash();
 		
+		void display();
+		void update(int time);
+		void keyboardUp(unsigned char key);
+		void keyboardDown(unsigned char key);
+		void keyboardSpecialUp(int key);
+		void keyboardSpecialDown(int key);
 };
 
 #endif
