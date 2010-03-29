@@ -1,37 +1,45 @@
-#include <GL/glut.h>
-#include "SuperCrash.h"
+// SuperCrash.cpp
 
-SuperCrash::SuperCrash() {
-	// constructor
+#include "SuperCrash.h"
+#include <GL/glut.h>
+
+SuperCrash::SuperCrash(): SuperEngine() {
+	SuperEngine::instance = this;
+	
+	superGame = new SuperGame();
+	//mainMenu = new MainMenu();
+	//pauseMenu = new PauseMenu();
+	current = superGame;
 }
 SuperCrash::~SuperCrash() {
-	// delete everything! mwahahaha
+	delete superGame;
+	//delete mainMenu;
+	//delete pauseMenu;
 }
 
-void SuperCrash::keyboardUp(int i) {
-	// Bregðast við lykli og senda annaðhvort í game eða menu
-}
-void SuperCrash::keyboardDown(int i) {
-	// Bregðast við lykli og senda annaðhvort í game eða menu
-}
-void SuperCrash::keyboardSpecialUp(unsigned char c) {
-	// Bregðast við lykli og senda annaðhvort í game eða menu
-}
-void SuperCrash::keyboardSpecialDown(unsigned char c) {
-	// Bregðast við lykli og senda annaðhvort í game eða menu
-}
 void SuperCrash::display() {
-		/*switch (state) {
-			case 0:
-				m.display(); break;
-			case 1:
-				game.display(); break;
-			case 2:
-				// ????
-		}*/
-		std::cout << "  SuperCrash teiknar!  \n";
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	current->display();
+	glutSwapBuffers();
 }
 
+void SuperCrash::update(int time) {
+	current->update(time);
+	glutPostRedisplay();
+}
 
+void SuperCrash::keyboardUp(unsigned char key) {
+	current->keyboardUp(key);
+}
 
+void SuperCrash::keyboardDown(unsigned char key) {
+	current->keyboardDown(key);
+}
 
+void SuperCrash::keyboardSpecialUp(int key) {
+	current->keyboardSpecialUp(key);
+}
+
+void SuperCrash::keyboardSpecialDown(int key) {
+	current->keyboardSpecialDown(key);
+}
