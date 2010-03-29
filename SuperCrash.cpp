@@ -7,16 +7,14 @@ SuperCrash::SuperCrash(): SuperEngine() {
 	SuperEngine::instance = this;
 	
 	superGame = new SuperGame();
-	//mainMenu = new MainMenu();
+	mainMenu = new MainMenu();
 	//pauseMenu = new PauseMenu();
-	
-	current = superGame;
-	superMenu = new SuperMenu();
-	current = superMenu;
+
+	current = mainMenu;
 }
 SuperCrash::~SuperCrash() {
 	delete superGame;
-	//delete mainMenu;
+	delete mainMenu;
 	//delete pauseMenu;
 }
 

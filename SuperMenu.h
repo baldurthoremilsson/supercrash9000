@@ -5,17 +5,21 @@
 
 #include "SuperObject.h"
 #include <string>
+#include <vector>
 
+using namespace std;
 
 //Tilvik af SuperMenu stendur fyrir einhvern menu skjá með 1 eða fleiri valmöguleikum
 class SuperMenu : public SuperObject {
 	protected:
-		std::string menuItem[8];
-		std::string menuTitle;
+		vector<string>menuItemVector;
+		string menuTitle;
 		int numItems;
 		int selectedItem;
 		float itemRotation[8];
 		float topSpace;
+		void calibrate();
+		virtual void selectItem(int n) = 0;
 	public:
 		SuperMenu();
 		virtual ~SuperMenu();
