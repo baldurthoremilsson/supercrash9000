@@ -10,6 +10,10 @@ class SuperEngine: public SuperObject {
 		SuperEngine();
 		~SuperEngine();
 		
+		int lastUpdate;
+		int FPS;
+		void sleep();
+		
 		static void SEdisplay();
 		static void SEupdate();
 		static void SEkeyboardUp(unsigned char key, int x, int y);
