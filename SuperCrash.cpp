@@ -9,7 +9,10 @@ SuperCrash::SuperCrash(): SuperEngine() {
 	superGame = new SuperGame();
 	//mainMenu = new MainMenu();
 	//pauseMenu = new PauseMenu();
+	
 	current = superGame;
+	superMenu = new SuperMenu();
+	current = superMenu;
 }
 SuperCrash::~SuperCrash() {
 	delete superGame;

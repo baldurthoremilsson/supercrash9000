@@ -7,6 +7,7 @@
 #include "SuperGame.h"
 //#include "MainMenu.h"
 //#include "PauseMenu.h"
+#include "SuperMenu.h"
 
 //Tilvik af SuperCrash stendur fyrir eintak af leiknum
 class SuperCrash: public SuperEngine {
@@ -15,6 +16,8 @@ class SuperCrash: public SuperEngine {
 		//MainMenu *mainMenu;
 		//PauseMenu *pauseMenu;
 		SuperObject *current;
+		
+		SuperMenu *superMenu;
 	public:
 		SuperCrash();
 		~SuperCrash();
