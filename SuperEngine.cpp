@@ -20,10 +20,14 @@ SuperEngine::SuperEngine() {
 	glutSpecialUpFunc(SuperEngine::SEkeyboardSpecialUp);
 	
 	
-	glClearColor (0.0, 0.0, 0.0, 1.0);
-	glColor3f(1.0,1.0,1.0);
+	glClearColor(0.0, 0.0, 0.0, 1.0);
+	
+	glMatrixMode(GL_PROJECTION);
 	glEnable(GL_DEPTH_TEST);
-	glMatrixMode( GL_MODELVIEW );
+	glLoadIdentity();
+	gluPerspective(60.0, 640.0/480.0, 0.5, 100.0);
+	
+	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 }
 
