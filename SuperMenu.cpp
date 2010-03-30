@@ -58,19 +58,19 @@ void SuperMenu::display() {
 				
 				glTranslatef(-(float)menuItemVector[i].length()/50,-0.002,0.0);
 				glScalef(0.0004,0.004,0.004);
-				string temp = menuItemVector[i];
-				for (j=0; j<temp.length(); j++) {
+				glRotatef(-itemRotation[i], 1.0,0.0,0.0);   // Sný textanum aftur til baka svo hann snúi alltaf fram
+				for (j=0; j<menuItemVector[i].length(); j++) {
 					glutStrokeCharacter(GLUT_STROKE_MONO_ROMAN,menuItemVector[i][j]);
 				}
 			glPopMatrix();
 			
 		}
+		// Látum titilinn dansa... haha! (kannski fjarlægja í seinni útgáfu)
+		glRotatef(0.5, rand(), rand(), rand());
 		
 		glTranslatef(-3.0,1.5,-5.0);
 		glScalef(0.004,0.004,0.004);
 		
-		// Látum titilinn dansa... haha! (kannski fjarlægja í seinni útgáfu)
-		glRotatef(3.0, rand(), rand(), rand());
 		glColor3f(1.0,0.1,0.1);
 		for (i=0; i<menuTitle.length(); i++) {
 			glutStrokeCharacter(GLUT_STROKE_MONO_ROMAN,menuTitle[i]);
