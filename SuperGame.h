@@ -4,8 +4,12 @@
 #define _SUPERGAME_H
 
 #include "SuperObject.h"
+#include "Map.h"
 
 class SuperGame: public SuperObject {
+	private:
+		Map *map;
+		
 	public:
 		SuperGame();
 		~SuperGame();

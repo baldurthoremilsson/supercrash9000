@@ -11,6 +11,7 @@ SuperCrash::SuperCrash(): SuperEngine() {
 	//pauseMenu = new PauseMenu();
 
 	current = mainMenu;
+	current = superGame;
 }
 SuperCrash::~SuperCrash() {
 	delete superGame;

@@ -1,6 +1,7 @@
 // SuperGame.cpp
 
 #include "SuperGame.h"
+#include "Map.h"
 #include <GL/gl.h>
 #include <GL/glut.h>
 #include <iostream>
@@ -8,6 +9,7 @@
 using namespace std;
 
 SuperGame::SuperGame() {
+	map = new Map(5, 5, 5);
 }
 
 SuperGame::~SuperGame() {
@@ -15,9 +17,10 @@ SuperGame::~SuperGame() {
 
 void SuperGame::display() {
 	glLoadIdentity();
-	gluLookAt(4.0, 4.0, 4.0,  0.0, 0.0, 0.0,  0.0, 1.0, 0.0);
+	gluLookAt(-10.0, -10.0, -10.0,  0.0, 0.0, 0.0,  0.0, 1.0, 0.0);
 	glColor3f(1.0, 1.0, 1.0);
-	glutWireSphere(1.0 ,10, 10);
+	map->display();
+	//glutWireSphere(1.0 ,10, 10);
 }
 
 void SuperGame::update(int time) {
