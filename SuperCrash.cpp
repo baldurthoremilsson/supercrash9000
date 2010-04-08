@@ -9,14 +9,18 @@ SuperCrash::SuperCrash(): SuperEngine() {
 	superGame = new SuperGame();
 	mainMenu = new MainMenu();
 	//pauseMenu = new PauseMenu();
+	highScore = new HighScore();
 
 	current = mainMenu;
 	current = superGame;
+	current = highScore;
+	highScore->setScore(100);
 }
 SuperCrash::~SuperCrash() {
 	delete superGame;
 	delete mainMenu;
 	//delete pauseMenu;
+	delete highScore;
 }
 
 void SuperCrash::display() {
@@ -32,7 +36,7 @@ void SuperCrash::update(int time) {
 }
 
 void SuperCrash::keyboardUp(unsigned char key) {
-	current->keyboardUp(key);
+	current->keyboardUp(key);	
 }
 
 void SuperCrash::keyboardDown(unsigned char key) {
