@@ -6,12 +6,15 @@
 #include "SuperObject.h"
 #include "Map.h"
 
+class SuperCrash;
+
 class SuperGame: public SuperObject {
 	private:
+		SuperCrash *superCrash;
 		Map *map;
 		
 	public:
-		SuperGame();
+		SuperGame(SuperCrash *sc);
 		~SuperGame();
 		
 		void display();

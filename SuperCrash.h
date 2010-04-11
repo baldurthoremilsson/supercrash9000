@@ -6,7 +6,7 @@
 #include "SuperEngine.h"
 #include "SuperGame.h"
 #include "MainMenu.h"
-//#include "PauseMenu.h"
+#include "PauseMenu.h"
 #include "HighScore.h"
 
 
@@ -15,7 +15,7 @@ class SuperCrash: public SuperEngine {
 	protected:
 		SuperGame *superGame;
 		MainMenu *mainMenu;
-		//PauseMenu *pauseMenu;
+		PauseMenu *pauseMenu;
 		HighScore *highScore;
 		
 		SuperObject *current;

@@ -2,14 +2,15 @@
 
 #include "SuperCrash.h"
 #include <GL/glut.h>
+#include <stdlib.h>
 
 SuperCrash::SuperCrash(): SuperEngine() {
 	SuperEngine::instance = this;
 	
-	superGame = new SuperGame();
+	superGame = new SuperGame(this);
 	mainMenu = new MainMenu(this);
-	//pauseMenu = new PauseMenu();
-	highScore = new HighScore();
+	pauseMenu = new PauseMenu(this);
+	highScore = new HighScore(this);
 
 	current = mainMenu;
 	//current = superGame;
@@ -19,7 +20,7 @@ SuperCrash::SuperCrash(): SuperEngine() {
 SuperCrash::~SuperCrash() {
 	delete superGame;
 	delete mainMenu;
-	//delete pauseMenu;
+	delete pauseMenu;
 	delete highScore;
 }
 
@@ -58,6 +59,8 @@ void SuperCrash::setCurrent(int n) {
 		current = superGame;
 	if (n==2)
 		current = highScore;
-	if (n==3) {}
-	//	current = pauseMenu;
+	if (n==3) 
+		current = pauseMenu;
+	if (n==4)
+		exit(0);
 }

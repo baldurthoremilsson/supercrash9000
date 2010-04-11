@@ -1,14 +1,14 @@
 // SuperMenu.h
 
-// Do not want circular include
-class SuperCrash;
-
 #ifndef _SUPERMENU_H
 #define _SUPERMENU_H
 
 #include "SuperObject.h"
 #include <string>
 #include <vector>
+
+// Do not want circular include
+class SuperCrash;
 
 using namespace std;
 

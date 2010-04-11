@@ -27,7 +27,7 @@ MainMenu::~MainMenu() {
 
 void MainMenu::startGame() {
 	cout << "Let's start the game now\n";
-	//superCrash->setCurrent(1);
+	superCrash->setCurrent(1);
 }
 void MainMenu::viewHighScores() {
 	cout << "Let's look at the high scores now\n";
@@ -35,7 +35,7 @@ void MainMenu::viewHighScores() {
 }
 void MainMenu::exitGame() {
 	cout << "Let's exit the game now\n";
-	close(0);
+	superCrash->setCurrent(4); //exit
 }
 void MainMenu::selectItem(int n) {
 	switch(n) {

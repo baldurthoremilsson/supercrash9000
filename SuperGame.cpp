@@ -2,14 +2,17 @@
 
 #include "SuperGame.h"
 #include "Map.h"
+#include "SuperCrash.h"
 #include <GL/gl.h>
 #include <GL/glut.h>
 #include <iostream>
 
+
 using namespace std;
 
-SuperGame::SuperGame() {
+SuperGame::SuperGame(SuperCrash *sc) {
 	map = new Map(5, 5, 5);
+	superCrash = sc;
 }
 
 SuperGame::~SuperGame() {
@@ -30,6 +33,8 @@ void SuperGame::keyboardUp(unsigned char key) {
 }
 
 void SuperGame::keyboardDown(unsigned char key) {
+	if (key == 27)
+		superCrash->setCurrent(3);
 }
 
 void SuperGame::keyboardSpecialUp(int key) {

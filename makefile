@@ -1,5 +1,5 @@
-supercrash9000: main.o mainmenu.o supercrash.o superengine.o supergame.o supermenu.o map.o mappoint.o mapside.o highscore.o
-	g++ -o supercrash9000 main.o mainmenu.o supercrash.o superengine.o supergame.o supermenu.o map.o mappoint.o mapside.o highscore.o -lGL -lglut
+supercrash9000: main.o mainmenu.o supercrash.o superengine.o supergame.o supermenu.o map.o mappoint.o mapside.o highscore.o pausemenu.o
+	g++ -o supercrash9000 main.o mainmenu.o supercrash.o superengine.o supergame.o supermenu.o map.o mappoint.o mapside.o highscore.o pausemenu.o -lGL -lglut
 main.o: main.cpp
 	g++ -c -o main.o main.cpp
 mainmenu.o: MainMenu.cpp
@@ -20,5 +20,7 @@ mapside.o: MapSide.cpp
 	g++ -c -o mapside.o MapSide.cpp
 highscore.o: HighScore.cpp
 	g++ -c -o highscore.o HighScore.cpp
+pausemenu.o: PauseMenu.cpp
+	g++ -c -o pausemenu.o PauseMenu.cpp
 clean:
-	rm main.o mainmenu.o supercrash.o superengine.o supergame.o supermenu.o map.o mappoint.o mapside.o highscore.o supercrash9000
+	rm main.o mainmenu.o supercrash.o superengine.o supergame.o supermenu.o map.o mappoint.o mapside.o highscore.o pausemenu.o supercrash9000
