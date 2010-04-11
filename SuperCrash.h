@@ -30,6 +30,8 @@ class SuperCrash: public SuperEngine {
 		void keyboardDown(unsigned char key);
 		void keyboardSpecialUp(int key);
 		void keyboardSpecialDown(int key);
+
+		void setCurrent(int n);
 };
 
 #endif

@@ -1,5 +1,8 @@
 // SuperMenu.h
 
+// Do not want circular include
+class SuperCrash;
+
 #ifndef _SUPERMENU_H
 #define _SUPERMENU_H
 
@@ -12,6 +15,7 @@ using namespace std;
 //Tilvik af SuperMenu stendur fyrir einhvern menu skjá með 1 eða fleiri valmöguleikum
 class SuperMenu : public SuperObject {
 	protected:
+		SuperCrash *superCrash;
 		vector<string>menuItemVector;
 		string menuTitle;
 		int numItems;

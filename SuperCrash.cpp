@@ -7,14 +7,14 @@ SuperCrash::SuperCrash(): SuperEngine() {
 	SuperEngine::instance = this;
 	
 	superGame = new SuperGame();
-	mainMenu = new MainMenu();
+	mainMenu = new MainMenu(this);
 	//pauseMenu = new PauseMenu();
 	highScore = new HighScore();
 
 	current = mainMenu;
-	current = superGame;
-	current = highScore;
-	highScore->setScore(100);
+	//current = superGame;
+	//current = highScore;
+	//highScore->setScore(100);
 }
 SuperCrash::~SuperCrash() {
 	delete superGame;
@@ -49,4 +49,15 @@ void SuperCrash::keyboardSpecialUp(int key) {
 
 void SuperCrash::keyboardSpecialDown(int key) {
 	current->keyboardSpecialDown(key);
+}
+
+void SuperCrash::setCurrent(int n) {
+	if (n==0)
+		current = mainMenu;
+	if (n==1)
+		current = superGame;
+	if (n==2)
+		current = highScore;
+	if (n==3) {}
+	//	current = pauseMenu;
 }
