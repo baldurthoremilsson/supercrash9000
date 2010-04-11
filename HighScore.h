@@ -1,17 +1,21 @@
 // HichScore.h
 
-#ifndef _HIGHTSCORE_H
+#ifndef _HIGHSCORE_H
 #define _HIGHSCORE_H
 
 #include "SuperObject.h"
 #include <string>
 #include <vector>
 
+// Do not want circular include
+class SuperCrash;
+
 using namespace std;
 
 //Tilvik af HighScore stendur fyrir High Score lista
 class HighScore : public SuperObject {
 	protected:
+		SuperCrash *superCrash;
 		vector<string> highScoreName;
 		vector<int>highScoreScore;
 		string menuTitle;
@@ -20,7 +24,7 @@ class HighScore : public SuperObject {
 		int rank; 			// player rank (if entering name)
 		int enteringIndex;	// Which letter is player entering now
 	public:
-		HighScore();
+		HighScore(SuperCrash *sc);
 		virtual ~HighScore();
 		
 		void display();

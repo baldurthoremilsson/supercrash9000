@@ -7,11 +7,15 @@
 #include <string>
 #include <vector>
 
+// Do not want circular include
+class SuperCrash;
+
 using namespace std;
 
 //Tilvik af SuperMenu stendur fyrir einhvern menu skjá með 1 eða fleiri valmöguleikum
 class SuperMenu : public SuperObject {
 	protected:
+		SuperCrash *superCrash;
 		vector<string>menuItemVector;
 		string menuTitle;
 		int numItems;

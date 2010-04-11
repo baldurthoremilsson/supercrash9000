@@ -1,6 +1,7 @@
 // HighScore.cpp
 
 #include "HighScore.h"
+#include "SuperCrash.h"
 #include <GL/gl.h>
 #include <GL/glut.h>
 #include <iostream>
@@ -12,9 +13,12 @@
 
 using namespace std;
 
-HighScore::HighScore() {
+HighScore::HighScore(SuperCrash *sc) {
 	rank = -1;
+	mode = 0;
 	menuTitle = "High Scores";
+	
+	// TODO: Get these from a file, also save them to the file when updated
 	highScoreName.push_back("Jeff");
 	highScoreName.push_back("Bruce");
 	highScoreName.push_back("David");
@@ -32,6 +36,8 @@ HighScore::HighScore() {
 	highScoreScore.push_back(1500);
 	highScoreScore.push_back(1000);
 	highScoreScore.push_back(500);
+	
+	superCrash = sc;
 }
 
 HighScore::~HighScore() {
@@ -41,7 +47,8 @@ void HighScore::display() {
 	int i,j;
 	glLoadIdentity();
 	
-	// Hér er hægt að teikna eitthvað í bakgrunninum á menu-inu.. woot
+	// Here it is possible to draw anything we want into the background
+	
 	glPushMatrix();
 		glLoadIdentity();
 		glClear(GL_DEPTH_BUFFER_BIT);
@@ -57,7 +64,6 @@ void HighScore::display() {
 				ostringstream buffer;
 				buffer << highScoreScore[i];
 				string scoreString = buffer.str();
-				
 				
 				glTranslatef(-8.0,2.0-i,-20.0);
 				glScalef(0.005,0.005,1.0);
@@ -77,13 +83,14 @@ void HighScore::display() {
 				for(j=scoreString.length(); j<9; j++) {
 					glutStrokeCharacter(GLUT_STROKE_MONO_ROMAN,32);
 				}
+				// Now draw the score string
 				for (j=0; j<scoreString.length(); j++) {
 					glutStrokeCharacter(GLUT_STROKE_MONO_ROMAN,scoreString[j]);
 				}
 			glPopMatrix();
 			
 		}
-		// Látum titilinn dansa... haha! (kannski fjarlægja í seinni útgáfu)
+		// Make the title dance/vibrate... yay fun!
 		glRotatef(4.5, rand(), rand(), rand());
 		
 		glTranslatef(-2.1,1.5,-5.0);
@@ -125,9 +132,16 @@ void HighScore::keyboardDown(unsigned char key) {
 			case 13: // carriage return, enter
 				mode = 0;
 				menuTitle = "High Score";
-				            
+				// TODO: Save to the file we should be using
+				break;             
 		} 
 	}
+	
+	if (mode == 0 && key == 27 /* ESC */) { 
+		cout << "Let's go from High Scores back to main menu now\n";
+		superCrash->setCurrent(0);
+	}
+	
 }
 
 void HighScore::keyboardSpecialUp(int key) {
