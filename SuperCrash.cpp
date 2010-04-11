@@ -7,10 +7,10 @@
 SuperCrash::SuperCrash(): SuperEngine() {
 	SuperEngine::instance = this;
 	
-	superGame = new SuperGame(this);
-	mainMenu = new MainMenu(this);
-	pauseMenu = new PauseMenu(this);
-	highScore = new HighScore(this);
+	superGame = new SuperGame();
+	mainMenu = new MainMenu();
+	pauseMenu = new PauseMenu();
+	highScore = new HighScore();
 
 	current = mainMenu;
 	//current = superGame;

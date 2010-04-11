@@ -10,11 +10,10 @@ class SuperCrash;
 
 class SuperGame: public SuperObject {
 	private:
-		SuperCrash *superCrash;
 		Map *map;
 		
 	public:
-		SuperGame(SuperCrash *sc);
+		SuperGame();
 		~SuperGame();
 		
 		void display();

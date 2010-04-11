@@ -17,7 +17,7 @@ class MainMenu : public SuperMenu {
 		void viewHighScores();
 		void exitGame();
 	public:
-		MainMenu(SuperCrash *sc);
+		MainMenu();
 		virtual ~MainMenu();
 };
 
