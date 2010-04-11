@@ -1,5 +1,5 @@
 supercrash9000: main.o mainmenu.o supercrash.o superengine.o supergame.o supermenu.o map.o mappoint.o mapside.o highscore.o
-	g++ -o supercrash9000 main.o mainmenu.o supercrash.o superengine.o supergame.o supermenu.o map.o mappoint.o mapside.o highscore.o -lGL -lglut
+	g++ -o supercrash9000 main.o mainmenu.o supercrash.o superengine.o supergame.o supermenu.o map.o mappoint.o mapside.o highscore.o -lglut
 main.o: main.cpp
 	g++ -c -o main.o main.cpp
 mainmenu.o: MainMenu.cpp

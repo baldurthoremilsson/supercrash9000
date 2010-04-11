@@ -24,6 +24,8 @@ class SuperCrash: public SuperEngine {
 		SuperCrash();
 		~SuperCrash();
 		
+		static SuperCrash* getInstance();
+		
 		void display();
 		void update(int time);
 		void keyboardUp(unsigned char key);

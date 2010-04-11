@@ -21,9 +21,9 @@ class SuperEngine: public SuperObject {
 		static void SEkeyboardSpecialUp(int key, int x, int y);
 		static void SEkeyboardSpecialDown(int key, int x, int y);
 		
-	public:
 		static SuperEngine *instance;
 		
+	public:
 		void run();
 };
 

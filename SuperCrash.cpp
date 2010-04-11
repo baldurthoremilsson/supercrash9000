@@ -16,11 +16,16 @@ SuperCrash::SuperCrash(): SuperEngine() {
 	current = highScore;
 	highScore->setScore(100);
 }
+
 SuperCrash::~SuperCrash() {
 	delete superGame;
 	delete mainMenu;
 	//delete pauseMenu;
 	delete highScore;
+}
+
+SuperCrash* SuperCrash::getInstance() {
+	return (SuperCrash*)instance;
 }
 
 void SuperCrash::display() {
