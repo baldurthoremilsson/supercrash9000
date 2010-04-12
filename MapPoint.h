@@ -5,7 +5,7 @@
 
 #include "SuperObject.h"
 
-class MapPoint: public SuperObject {
+class MapPoint {
 	private:
 		int X;
 		int Y;
