@@ -3,7 +3,6 @@
 #ifndef _MAPSIDE_H
 #define _MAPSIDE_H
 
-#include "definitions.h"
 #include "SuperObject.h"
 #include <GL/gl.h>
 
@@ -45,10 +44,9 @@ class MapSide: public SuperObject {
 		void setSouth(MapSide *s, Edge sn);
 		void setEast(MapSide *s, Edge sn);
 		void setWest(MapSide *s, Edge sn);
-		MapSide* getNorth();
-		MapSide* getSouth();
-		MapSide* getEast();
-		MapSide* getWest();
+		
+		MapSide* getSide(Edge e);
+		Edge getEdge(Edge e);
 		
 		void display();
 		void update(int time);

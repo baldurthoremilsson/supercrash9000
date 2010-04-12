@@ -1,5 +1,5 @@
-supercrash9000: main.o mainmenu.o supercrash.o superengine.o supergame.o supermenu.o map.o mappoint.o mapside.o highscore.o pausemenu.o
-	g++ -o supercrash9000 main.o mainmenu.o supercrash.o superengine.o supergame.o supermenu.o map.o mappoint.o mapside.o highscore.o pausemenu.o -lglut
+supercrash9000: main.o mainmenu.o supercrash.o superengine.o supergame.o supermenu.o map.o mappoint.o mapside.o highscore.o pausemenu.o color.o superplayer.o humanplayer.o
+	g++ -o supercrash9000 main.o mainmenu.o supercrash.o superengine.o supergame.o supermenu.o map.o mappoint.o mapside.o highscore.o pausemenu.o color.o superplayer.o humanplayer.o -lglut
 main.o: main.cpp
 	g++ -c -o main.o main.cpp
 mainmenu.o: MainMenu.cpp
@@ -22,5 +22,11 @@ highscore.o: HighScore.cpp
 	g++ -c -o highscore.o HighScore.cpp
 pausemenu.o: PauseMenu.cpp
 	g++ -c -o pausemenu.o PauseMenu.cpp
+color.o: Color.cpp
+	g++ -c -o color.o Color.cpp
+superplayer.o: SuperPlayer.cpp
+	g++ -c -o superplayer.o SuperPlayer.cpp
+humanplayer.o: HumanPlayer.cpp
+	g++ -c -o humanplayer.o HumanPlayer.cpp
 clean:
 	rm main.o mainmenu.o supercrash.o superengine.o supergame.o supermenu.o map.o mappoint.o mapside.o highscore.o pausemenu.o supercrash9000

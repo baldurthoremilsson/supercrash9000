@@ -3,7 +3,6 @@
 #ifndef _MAP_H
 #define _MAP_H
 
-#include "definitions.h"
 #include "MapSide.h"
 
 class Map: public SuperObject {

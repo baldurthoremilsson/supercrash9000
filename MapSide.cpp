@@ -54,20 +54,26 @@ void MapSide::setWest(MapSide *s, Edge sn) {
 	westEdge = sn;
 }
 
-MapSide* MapSide::getNorth() {
-	return northSide;
+MapSide* MapSide::getSide(Edge e) {
+	if(e == NORTH)
+		return northSide;
+	if(e == SOUTH)
+		return southSide;
+	if(e == EAST)
+		return eastSide;
+	if(e == WEST)
+		return westSide;
 }
 
-MapSide* MapSide::getSouth() {
-	return southSide;
-}
-
-MapSide* MapSide::getEast() {
-	return eastSide;
-}
-
-MapSide* MapSide::getWest() {
-	return westSide;
+Edge MapSide::getEdge(Edge e) {
+	if(e == NORTH)
+		return northEdge;
+	if(e == SOUTH)
+		return southEdge;
+	if(e == EAST)
+		return eastEdge;
+	if(e == WEST)
+		return westEdge;
 }
 
 void MapSide::display() {

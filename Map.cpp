@@ -2,7 +2,6 @@
 
 #include "Map.h"
 #include "MapSide.h"
-#include "definitions.h"
 #include <GL/gl.h>
 #include <GL/glut.h>
 
