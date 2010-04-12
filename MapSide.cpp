@@ -16,9 +16,9 @@ MapSide::MapSide(int x, int y) {
 	
 	points = new MapPoint*[x+1];
 	for (int row = 0; row < x+1; row++) {
-		points[row] = new MapPoint[z+1];
+		points[row] = new MapPoint[y+1];
 		
-		for (int col=0; col<z+1; col++) {
+		for (int col=0; col<y+1; col++) {
 			points[row][col].setX(row);
 			points[row][col].setY(col);
 		}
