@@ -20,7 +20,7 @@ enum Edge {
 class MapSide: public SuperObject {
 	private:
 		int X;
-		int Z;
+		int Y;
 		
 		MapSide *northSide;
 		MapSide *southSide;
@@ -39,13 +39,13 @@ class MapSide: public SuperObject {
 		list<SuperObject*> objects;
 		
 	public:
-		MapSide(int x, int z);
+		MapSide(int x, int y);
 		~MapSide();
 		
 		void setX(int x);
-		void setZ(int z);
+		void setY(int y);
 		int getX();
-		int getZ();
+		int getY();
 		
 		void setNorth(MapSide *s, Edge sn);
 		void setSouth(MapSide *s, Edge sn);
