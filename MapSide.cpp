@@ -13,6 +13,8 @@ MapSide::MapSide(int x, int y) {
 	gridColor[0] = 0.0;
 	gridColor[1] = 1.0;
 	gridColor[2] = 1.0;
+	//points = new MapPoint[x+1][55+1];
+	//test = new int[11][43];
 }
 
 MapSide::~MapSide() {

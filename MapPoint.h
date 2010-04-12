@@ -9,6 +9,7 @@ class MapPoint: public SuperObject {
 	private:
 		int X;
 		int Y;
+		SuperObject *object;
 		
 	public:
 		MapPoint(int x, int y);
