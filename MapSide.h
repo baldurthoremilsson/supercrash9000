@@ -35,8 +35,8 @@ class MapSide: public SuperObject {
 		GLfloat planeColor[3];
 		GLfloat gridColor[3];
 		
-		//MapPoint *points;
-		//list<SuperObject> *objects;
+		MapPoint **points;
+		list<SuperObject*> objects;
 		
 	public:
 		MapSide(int x, int z);
