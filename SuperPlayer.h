@@ -16,6 +16,7 @@ class SuperPlayer: public SuperObject {
 		float offset;
 		float speed;
 		Color color;
+		int lastUpdate;
 		
 		int getRotation();
 		Edge getEdge();
@@ -24,8 +25,10 @@ class SuperPlayer: public SuperObject {
 		SuperPlayer(int x, int y, Edge dir, MapSide *mside, const Color &c);
 		~SuperPlayer();
 		
-		virtual void draw();
+		virtual void display();
 		virtual void update(int time);
+		
+		//friend PowerUp;
 };
 
 #endif

@@ -1,7 +1,10 @@
 // SuperEngine.cpp
 
 #include "SuperEngine.h"
+#include <cstddef>
 #include <GL/glut.h>
+
+using namespace std;
 
 SuperEngine *SuperEngine::instance;
 

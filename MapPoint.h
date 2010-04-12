@@ -4,11 +4,16 @@
 #define _MAPPOINT_H
 
 #include "SuperObject.h"
+#include "Color.h"
 
 class MapPoint {
 	private:
 		int X;
 		int Y;
+		
+		Color *horiz;
+		Color *vert;
+		
 		SuperObject *object;
 		
 	public:
@@ -19,6 +24,12 @@ class MapPoint {
 		void setY(int y);
 		int getX();
 		int getY();
+		
+		void setColorHoriz(const Color &c);
+		void setColorVert(const Color &c);
+		const Color* getColorHoriz();
+		const Color* setColorHoriz();
 };
 
 #endif
+

@@ -5,6 +5,7 @@
 
 #include "SuperObject.h"
 #include "MapPoint.h"
+#include "Color.h"
 #include <list>
 #include <GL/gl.h>
 
@@ -32,8 +33,8 @@ class MapSide: public SuperObject {
 		Edge eastEdge;
 		Edge westEdge;
 		
-		GLfloat planeColor[3];
-		GLfloat gridColor[3];
+		Color planelColor;
+		Color gridColor;
 		
 		//MapPoint *points;
 		//list<SuperObject> *objects;

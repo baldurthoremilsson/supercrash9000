@@ -7,12 +7,8 @@ MapSide::MapSide(int x, int y) {
 	X = x;
 	Y = y;
 	
-	planeColor[0] = 0.0;
-	planeColor[1] = 0.1;
-	planeColor[2] = 0.5;
-	gridColor[0] = 0.0;
-	gridColor[1] = 1.0;
-	gridColor[2] = 1.0;
+	panelColor.setColor(0.0, 0.1, 0.5);
+	gridColor.setColor(0.0, 1.0, 1.0);
 	//points = new MapPoint[x+1][55+1];
 	//test = new int[11][43];
 }
@@ -79,7 +75,7 @@ Edge MapSide::getEdge(Edge e) {
 }
 
 void MapSide::display() {
-	glColor3fv(gridColor);
+	glColor3fv(gridColor.get3fv());
 	glBegin(GL_LINES);
 	for(int i = 0; i < X; i++) {
 		glVertex3f(-X/2.0, 0.0, i-Y/2.0 + 0.5);
@@ -91,7 +87,7 @@ void MapSide::display() {
 	}
 	glEnd();
 	
-	glColor3fv(planeColor);
+	glColor3fv(planelColor.get3fv());
 	glBegin(GL_QUADS);
 		glVertex3f(-X/2.0, 0.0, -Y/2.0);
 		glVertex3f(-X/2.0, 0.0,  Y/2.0);

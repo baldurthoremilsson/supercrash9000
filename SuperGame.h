@@ -5,12 +5,14 @@
 
 #include "SuperObject.h"
 #include "Map.h"
+#include "SuperPlayer.h"
 
 class SuperCrash;
 
 class SuperGame: public SuperObject {
 	private:
 		Map *map;
+		SuperPlayer *player1;
 		
 	public:
 		SuperGame();

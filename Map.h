@@ -21,6 +21,13 @@ class Map: public SuperObject {
 		Map(int x, int y, int z);
 		~Map();
 		
+		MapSide* getTop();
+		MapSide* getBottom();
+		MapSide* getLeft();
+		MapSide* getRight();
+		MapSide* getFront();
+		MapSide* getBack();
+		
 		void display();
 		void update(int time);
 		void keyboardUp(unsigned char key);

@@ -57,6 +57,30 @@ Map::~Map() {
 	delete rightSide;
 }
 
+MapSide* Map::getTop() {
+	return topSide;
+}
+
+MapSide* Map::getBottom() {
+	return bottomSide;
+}
+
+MapSide* Map::getLeft() {
+	return leftSide;
+}
+
+MapSide* Map::getRight() {
+	return rightSide;
+}
+
+MapSide* Map::getFront() {
+	return frontSide;
+}
+
+MapSide* Map::getBack() {
+	return backSide;
+}
+
 void Map::display() {
 	glColor3f(1.0, 0.0, 0.0); // RED
 	glPushMatrix();
