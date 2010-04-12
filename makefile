@@ -1,5 +1,5 @@
-supercrash9000: main.o mainmenu.o supercrash.o superengine.o supergame.o supermenu.o map.o mappoint.o mapside.o highscore.o pausemenu.o color.o superplayer.o humanplayer.o
-	g++ -o supercrash9000 main.o mainmenu.o supercrash.o superengine.o supergame.o supermenu.o map.o mappoint.o mapside.o highscore.o pausemenu.o color.o superplayer.o humanplayer.o -lglut
+supercrash9000: main.o mainmenu.o supercrash.o superengine.o supergame.o supermenu.o map.o mappoint.o mapside.o highscore.o pausemenu.o color.o superplayer.o humanplayer.o superpowerup.o speedpowerup.o
+	g++ -o supercrash9000 main.o mainmenu.o supercrash.o superengine.o supergame.o supermenu.o map.o mappoint.o mapside.o highscore.o pausemenu.o color.o superplayer.o humanplayer.o superpowerup.o speedpowerup.o -lglut
 main.o: main.cpp
 	g++ -c -o main.o main.cpp
 mainmenu.o: MainMenu.cpp
@@ -28,5 +28,9 @@ superplayer.o: SuperPlayer.cpp
 	g++ -c -o superplayer.o SuperPlayer.cpp
 humanplayer.o: HumanPlayer.cpp
 	g++ -c -o humanplayer.o HumanPlayer.cpp
+superpowerup.o: SuperPowerup.cpp
+	g++ -c -o superpowerup.o SuperPowerup.cpp
+speedpowerup.o: SpeedPowerup.cpp
+	g++ -c -o speedpowerup.o SpeedPowerup.cpp
 clean:
-	rm main.o mainmenu.o supercrash.o superengine.o supergame.o supermenu.o map.o mappoint.o mapside.o highscore.o pausemenu.o supercrash9000
+	rm main.o mainmenu.o supercrash.o superengine.o supergame.o supermenu.o map.o mappoint.o mapside.o highscore.o pausemenu.o color.o humanplayer.o speedpowerup.o superplayer.o superpowerup.o supercrash9000

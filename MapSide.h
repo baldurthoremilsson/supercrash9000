@@ -4,7 +4,11 @@
 #define _MAPSIDE_H
 
 #include "SuperObject.h"
+#include "MapPoint.h"
+#include <list>
 #include <GL/gl.h>
+
+using namespace std;
 
 enum Edge {
 	NORTH,
@@ -30,6 +34,9 @@ class MapSide: public SuperObject {
 		
 		GLfloat planeColor[3];
 		GLfloat gridColor[3];
+		
+		//MapPoint *points;
+		//list<SuperObject> *objects;
 		
 	public:
 		MapSide(int x, int z);
