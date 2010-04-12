@@ -28,3 +28,9 @@ void SuperPowerup::update(int time) {
 	}
 }
 
+SuperPlayer *SuperPowerup::getPlayer() {
+	return player;
+}
+void SuperPowerup::setPlayer(SuperPlayer *pl) {
+	player = pl;
+}

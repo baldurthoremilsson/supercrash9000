@@ -36,8 +36,8 @@ class MapSide: public SuperObject {
 		Color planelColor;
 		Color gridColor;
 		
-		//MapPoint *points;
-		//list<SuperObject> *objects;
+		MapPoint **points;
+		list<SuperObject*> objects;
 		
 	public:
 		MapSide(int x, int y);

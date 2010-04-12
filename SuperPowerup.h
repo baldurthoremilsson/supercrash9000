@@ -26,6 +26,8 @@ class SuperPowerup : public SuperObject {
 		void keyboardSpecialUp(int key) {}
 		void keyboardSpecialDown(int key) {}
 		int alive;
+		SuperPlayer *getPlayer();
+		void setPlayer(SuperPlayer *pl);
 
 };
 

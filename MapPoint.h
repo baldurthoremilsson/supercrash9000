@@ -17,11 +17,14 @@ class MapPoint {
 		SuperObject *object;
 		
 	public:
+		MapPoint();
 		MapPoint(int x, int y);
 		~MapPoint();
 		
 		void setX(int x);
 		void setY(int y);
+		SuperObject *getObject();
+		void setObject(SuperObject *obj);
 		int getX();
 		int getY();
 		
