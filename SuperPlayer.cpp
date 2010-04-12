@@ -41,7 +41,7 @@ void SuperPlayer::draw() {
 	glColor3fv(color.get3fv());
 	glPushMatrix();
 		glRotatef(this->getRotation(), 0.0, -1.0, 0.0);
-		glTranslatef((X-side->getX())/2.0, 0.0, (Y-side->getZ())/2.0);
+		glTranslatef((X-side->getX())/2.0, 0.0, (Y-side->getY())/2.0);
 		glBegin(GL_TRIANGLE_STRIP);
 			glVertex3f(-1.0, 0.5,  0.0 );
 			glVertex3f( 0.0, 0.0,  0.0 );
