@@ -9,8 +9,6 @@ MapSide::MapSide(int x, int y) {
 	
 	panelColor.setColor(0.0, 0.1, 0.5);
 	gridColor.setColor(0.0, 1.0, 1.0);
-	//points = new MapPoint[x+1][55+1];
-	//test = new int[11][43];
 	
 	points = new MapPoint*[x+1];
 	for (int row = 0; row < x+1; row++) {
@@ -21,10 +19,6 @@ MapSide::MapSide(int x, int y) {
 			points[row][col].setY(col);
 		}
 	}
-	/* Nú er hægt að skoða mappoint [x,y] með
-		whatIsAtXY = points[x][y]
-		(vonandi)
-	*/
 }
 
 MapSide::~MapSide() {
