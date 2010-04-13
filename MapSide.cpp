@@ -13,11 +13,6 @@ MapSide::MapSide(int x, int y) {
 	points = new MapPoint*[x+1];
 	for (int row = 0; row < x+1; row++) {
 		points[row] = new MapPoint[y+1];
-		
-		for (int col=0; col<y+1; col++) {
-			points[row][col].setX(row);
-			points[row][col].setY(col);
-		}
 	}
 }
 
@@ -82,6 +77,10 @@ Edge MapSide::getEdge(Edge e) {
 		return westEdge;
 }
 
+MapPoint* MapSide::getPoint(int x, int y) {
+	return &points[x][y];
+}
+
 void MapSide::display() {
 	glColor3fv(gridColor.get3fv());
 	glBegin(GL_LINES);
@@ -95,7 +94,7 @@ void MapSide::display() {
 	}
 	glEnd();
 	
-	glColor3fv(planelColor.get3fv());
+	glColor3fv(panelColor.get3fv());
 	glBegin(GL_QUADS);
 		glVertex3f(-X/2.0, 0.0, -Y/2.0);
 		glVertex3f(-X/2.0, 0.0,  Y/2.0);

@@ -49,4 +49,3 @@ void Color::setColor(float r, float g, float b) {
 const float* Color::get3fv() {
 	return colors;
 }
-

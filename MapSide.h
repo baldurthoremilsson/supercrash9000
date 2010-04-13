@@ -33,7 +33,7 @@ class MapSide: public SuperObject {
 		Edge eastEdge;
 		Edge westEdge;
 		
-		Color planelColor;
+		Color panelColor;
 		Color gridColor;
 		
 		MapPoint **points;
@@ -55,6 +55,8 @@ class MapSide: public SuperObject {
 		
 		MapSide* getSide(Edge e);
 		Edge getEdge(Edge e);
+		
+		MapPoint* getPoint(int x, int y);
 		
 		void display();
 		void update(int time);

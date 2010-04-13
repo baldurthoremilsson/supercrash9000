@@ -16,8 +16,12 @@ class SuperPlayer: public SuperObject {
 		float offset;
 		float speed;
 		Color color;
+		
+		list<SuperObject*> objects;
+		
 		bool turnLeft;
 		bool turnRight;
+		
 		int lastUpdate;
 		
 		int getRotation();
@@ -34,4 +38,3 @@ class SuperPlayer: public SuperObject {
 };
 
 #endif
-

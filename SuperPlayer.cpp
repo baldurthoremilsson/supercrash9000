@@ -13,6 +13,7 @@ SuperPlayer::SuperPlayer(int x, int y, Edge dir, MapSide *mside, const Color &c)
 	direction = dir;
 	side = mside;
 	color = c;
+	
 	turnLeft = false;
 	turnRight = false;
 }
@@ -42,7 +43,7 @@ Edge SuperPlayer::getEdge() {
 		return WEST;
 }
 
-void SuperPlayer::draw() {
+void SuperPlayer::display() {
 	glColor3fv(color.get3fv());
 	glPushMatrix();
 		glRotatef(this->getRotation(), 0.0, -1.0, 0.0);
@@ -60,6 +61,7 @@ void SuperPlayer::draw() {
 void SuperPlayer::update(int time) {
 	// todo: PowerUp updates
 	offset += speed * (time-lastUpdate)/1000.0;
+<<<<<<< HEAD:SuperPlayer.cpp
 	if(offset >= 0.0 && offset <= 1.0)
 		return;
 	
@@ -77,102 +79,178 @@ void SuperPlayer::update(int time) {
 			newSide = side->getSide(SOUTH);
 			
 			switch(newEdge) {
-			case NORTH:
-				Y = newSide->getY();
-				break;
-			case SOUTH:
-				X = newSide->getX() - (X-1);
-				break;
-			case EAST:
-				Y = newSide->getY() - (X-1);
-				X = newSide->getX();
-				break;
-			case WEST:
-				Y = X;
-				X = 1;
-				break;
-			}
-		} else
-			Y--;
-	} else if(offset < 0.0 && direction == EAST) { // going WEST
-		// todo: make wall
-		if(X == 1) {
-			newEdge = side->getEdge(WEST);
-			newSide = side->getSide(WEST);
-			
-			switch(newEdge) {
-			case NORTH:
-				X = newSide->getX() - (Y-1);
-				Y = newSide->getY();
-				break;
-			case SOUTH:
-				X = Y;
-				Y = 1;
-				break;
-			case EAST:
-				X = newSide->getX();
-				break;
-			case WEST:
-				Y = newSide->getY() - (Y-1)
-				break;
-			}
-		} else
-			X--;
-	} else if(offset > 1.0 && direction NORTH) { // going NORTH
-		// todo: make wall
-		if(Y == side->getX()) {
-			newEdge = side->getEdge(NORTH);
-			newSide = side->getSide(NORTH);
-			
-			switch(newEdge) {
-			case NORTH:
-				Y = newSide->getY() - (Y-1);
-				X = newSide->getX();
-				break;
-			case SOUTH:
-				Y = 1;
-				break;
-			case EAST:
-				Y = X;
-				X = newSide->getX();
-				break;
-			case WEST:
-				Y = newSide->getY() - (X-1);
-				X = 1;
-				break;
-			}
-		} else
-			Y++;
-	} else { // offset > 1.0 && direction == EAST // going EAST
-		// todo: make wall
-		if(X == side->getY()) {
-			newEdge = side->getEdge(EAST);
-			newSide = side->getSide(EAST);
-			
-			switch(newEdge) {
-			case NORTH:
-				Y = X;
-				X = newSide->getX();
-				break;
-			case SOUTH:
-				X = newSide->getX() - (Y-1);
-				Y = 1;
-				break;
-			case EAST:
-				Y = newSide->getY() - (Y-1);
-				X = newSide->getX();
-				break;
-			case WEST:
-				X = 1;
-				break;
-			}
-		} else
-			X++;
+=======
+	
+	if(offset >= 0.0 && offset <= 1.0)
+		return; // did not cross MapPoints
+	
+	// preparation for collision detection
+	MapPoint *collisionHV;
+	MapPoint *collisionH;
+	MapPoint *collisionV;
+	
+	// creating a wall
+	if(direction == NORTH)
+		side->getPoint(X,Y)->setVertWall(color);
+	else
+		side->getPoint(X,Y)->setHorizWall(color);
+	
+	// fixing the offset
+	if(offset < 0.0)
+		offset += 1.0;
+	else
+		offset -= 1.0;
+	
+	// dir == the way we're heading
+	Edge dir;
+	if(direction == NORTH && speed > 0.0 && turnLeft == turnRight ||
+	   direction == EAST  && speed > 0.0 && turnLeft ||
+	   direction == EAST  && speed < 0.0 && turnRight)
+		dir = NORTH;
+	else if(direction == NORTH && speed < 0.0 && turnLeft == turnRight ||
+	        direction == EAST  && speed > 0.0 && turnRight ||
+	        direction == EAST  && speed < 0.0 && turnLeft)
+		dir = SOUTH;
+	else if(direction == EAST  && speed > 0.0 && turnLeft == turnRight ||
+	        direction == NORTH && speed < 0.0 && turnLeft ||
+	        direction == NORTH && speed > 0.0 && turnRight)
+		dir = EAST;
+	else
+		dir = WEST;
+	
+	if(speed < 0.0 && (dir == NORTH || dir == EAST) || speed > 0.0 && (dir == SOUTH || dir == WEST))
+		speed *= -1.0;
+	
+	direction = (dir == NORTH || dir == SOUTH) ? NORTH : EAST;
+	
+	// preparation for collision detection
+	if(dir == SOUTH || dir == WEST) {
+		collisionHV = side->getPoint(X, Y);
+		collisionH  = side->getPoint(X-1, Y);
+		collisionV  = side->getPoint(X, Y-1);
 	}
-	if(newSide == NULL)
-		currPoint = side->getPoint(X,Y);
-	else {
-		currPoint = newSide->getPoint(X,Y);
+	
+	switch(dir) {
+		case NORTH: Y++; break;
+		case SOUTH: Y--; break;
+		case EAST: X++; break;
+		case WEST: X--; break;
+	}
+	
+	Edge farEdge = side->getEdge(dir);
+	MapSide *farSide = side;
+	int farX = X;
+	int farY = Y;
+	
+	if(X == 0) { // dir == WEST
+		side->getPoint(X,Y)->setVertWall(color);
+		farSide = side->getSide(dir);
+		
+		switch(farEdge) {
+>>>>>>> 79708860bf9e9f4cce46958a07633ac53c4b428e:SuperPlayer.cpp
+			case NORTH:
+				farX = farSide->getX() - (Y-1);
+				farY = farSide->getY();
+				break;
+			case SOUTH:
+				farX = Y;
+				farY = 1;
+				break;
+			case EAST:
+				farX = farSide->getX();
+				farY = Y;
+				break;
+			case WEST:
+				farX = 1;
+				farY = farSide->getY() - (Y-1);
+				break;
+		}
+	} else if(X > side->getX()) { // dir == EAST
+		farSide = side->getSide(dir);
+		
+		switch(farEdge) {
+			case NORTH:
+				farX = Y;
+				farY = farSide->getX();
+				break;
+			case SOUTH:
+				farX = farSide->getX() - (Y-1);
+				farY = 1;
+				break;
+			case EAST:
+				farX = farSide->getX();
+				farY = farSide->getY() - (Y-1);
+				break;
+			case WEST:
+				farX = 1;
+				farY = Y;
+				break;
+		}
+	}
+	if(Y == 0) { // dir == SOUTH
+		side->getPoint(X,Y)->setHorizWall(color);
+		farSide = side->getSide(dir);
+		
+		switch(farEdge) {
+			case NORTH:
+				farX = X;
+				farY = farSide->getY();
+				break;
+			case SOUTH:
+				farX = farSide->getX() - (X-1);
+				farY = 1;
+				break;
+			case EAST:
+				farX = farSide->getX();
+				farY = farSide->getY() - (X-1);
+				break;
+			case WEST:
+				farX = 1;
+				farY = X;
+				break;
+		}
+	} else if(Y > side->getY()) { // dir == NORTH
+		farSide = side->getSide(dir);
+		
+		switch(farEdge) {
+			case NORTH:
+				farX = farSide->getX() - (X-1);
+				farY = farSide->getY();
+				break;
+			case SOUTH:
+				farX = X;
+				farY = 1;
+				break;
+			case EAST:
+				farX = farSide->getX();
+				farY = X;
+				break;
+			case WEST:
+				farX = 1;
+				farY = farSide->getY() - (X-1);
+				break;
+		}
+	}
+	
+	if(side != farSide && farEdge == SOUTH)
+		farSide->getPoint(0,farY)->setHorizWall(color);
+	else if(side != farSide && farEdge == WEST)
+		farSide->getPoint(farX,0)->setVertWall(color);
+	
+	side = farSide;
+	X = farX;
+	Y = farY;
+	
+	if(dir == NORTH || dir == EAST) {
+		collisionHV = side->getPoint(X,Y);
+		collisionH  = side->getPoint(X-1,Y);
+		collisionV  = side->getPoint(X,Y-1);
+	}
+	
+	if(collisionHV->getHorizWall() || collisionHV->getVertWall() || collisionH->getHorizWall() || collisionV->getVertWall())
+		; // colided!
+	if(collisionHV->getObject()) {
+		
 	}
 	
 	lastUpdate = time;

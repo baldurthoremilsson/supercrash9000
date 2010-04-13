@@ -17,4 +17,3 @@ class HumanPlayer: public SuperPlayer {
 };
 
 #endif
-

@@ -8,9 +8,6 @@
 
 class MapPoint {
 	private:
-		int X;
-		int Y;
-		
 		Color *horiz;
 		Color *vert;
 		
@@ -18,20 +15,15 @@ class MapPoint {
 		
 	public:
 		MapPoint();
-		MapPoint(int x, int y);
 		~MapPoint();
 		
-		void setX(int x);
-		void setY(int y);
 		SuperObject *getObject();
 		void setObject(SuperObject *obj);
-		int getX();
-		int getY();
 		
-		void setColorHoriz(const Color &c);
-		void setColorVert(const Color &c);
-		const Color* getColorHoriz();
-		const Color* setColorHoriz();
+		void setHorizWall(const Color &c);
+		void setVertWall(const Color &c);
+		const Color* getHorizWall();
+		const Color* getVertWall();
 };
 
 #endif
