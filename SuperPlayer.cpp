@@ -63,15 +63,26 @@ void SuperPlayer::update(int time) {
 	offset += speed * (time-lastUpdate)/1000.0;
 	
 	if(offset >= 0.0 && offset <= 1.0)
-		return;
+		return; // did not cross MapPoints
 	
-	// todo: create wall
+	// preparation for collision detection
+	MapPoint *collisionHV;
+	MapPoint *collisionH;
+	MapPoint *collisionV;
 	
+	// creating a wall
+	if(direction == NORTH)
+		side->getPoint(X,Y)->setVertWall(color);
+	else
+		side->getPoint(X,Y)->setHorizWall(color);
+	
+	// fixing the offset
 	if(offset < 0.0)
 		offset += 1.0;
 	else
 		offset -= 1.0;
 	
+	// dir == the way we're heading
 	Edge dir;
 	if(direction == NORTH && speed > 0.0 && turnLeft == turnRight ||
 	   direction == EAST  && speed > 0.0 && turnLeft ||
@@ -93,6 +104,13 @@ void SuperPlayer::update(int time) {
 	
 	direction = (dir == NORTH || dir == SOUTH) ? NORTH : EAST;
 	
+	// preparation for collision detection
+	if(dir == SOUTH || dir == WEST) {
+		collisionHV = side->getPoint(X, Y);
+		collisionH  = side->getPoint(X-1, Y);
+		collisionV  = side->getPoint(X, Y-1);
+	}
+	
 	switch(dir) {
 		case NORTH: Y++; break;
 		case SOUTH: Y--; break;
@@ -106,8 +124,8 @@ void SuperPlayer::update(int time) {
 	int farY = Y;
 	
 	if(X == 0) { // dir == WEST
+		side->getPoint(X,Y)->setVertWall(color);
 		farSide = side->getSide(dir);
-		// todo: create wall
 		
 		switch(farEdge) {
 			case NORTH:
@@ -150,8 +168,8 @@ void SuperPlayer::update(int time) {
 		}
 	}
 	if(Y == 0) { // dir == SOUTH
+		side->getPoint(X,Y)->setHorizWall(color);
 		farSide = side->getSide(dir);
-		// todo: createwall
 		
 		switch(farEdge) {
 			case NORTH:
@@ -194,12 +212,21 @@ void SuperPlayer::update(int time) {
 		}
 	}
 	
-	if(side != farSide && (farEdge == SOUTH || farEdge == WEST)
-		; // todo: create wall
+	if(side != farSide && farEdge == SOUTH)
+		farSide->getPoint()->setHorizWall(color);
+	else if(side != farSide && farEdge == WEST)
+		farSide->getPoint()->setVertWall(color);
 	
 	side = farSide;
 	X = farX;
 	Y = farY;
+	
+	if(dir == NORTH || dir == EAST) {
+		collisionHV = side->getPoint(X,Y);
+		collisionH  = side->getPoint(X-1,Y);
+		collisionV  = side->getPoint(X,Y-1);
+	}
+	
 	
 	// todo: collision detection
 	

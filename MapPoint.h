@@ -20,10 +20,10 @@ class MapPoint {
 		SuperObject *getObject();
 		void setObject(SuperObject *obj);
 		
-		void setColorHoriz(const Color &c);
-		void setColorVert(const Color &c);
-		const Color* getColorHoriz();
-		const Color* setColorHoriz();
+		void setHorizWall(const Color &c);
+		void setVertWall(const Color &c);
+		const Color* getHorizWall();
+		const Color* setVertWall();
 };
 
 #endif
