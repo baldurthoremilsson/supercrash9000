@@ -6,10 +6,6 @@
 #include "SuperPlayer.h"
 
 class HumanPlayer: public SuperPlayer {
-	private:
-		bool turnLeft;
-		bool turnRight;
-		
 	public:
 		HumanPlayer(int x, int y, Edge dir, MapSide *mside, const Color &c);
 		~HumanPlayer();

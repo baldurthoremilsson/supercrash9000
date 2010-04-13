@@ -13,6 +13,8 @@ SuperPlayer::SuperPlayer(int x, int y, Edge dir, MapSide *mside, const Color &c)
 	direction = dir;
 	side = mside;
 	color = c;
+	turnLeft = false;
+	turnRight = false;
 }
 
 SuperPlayer::~SuperPlayer() {
@@ -57,12 +59,17 @@ void SuperPlayer::draw() {
 
 void SuperPlayer::update(int time) {
 	// todo: PowerUp updates
+	offset += speed * (time-lastUpdate)/1000.0;
+	if(offset >= 0.0 && offset <= 1.0)
+		return;
+	
+	Edge heading;
+	if(dir == NORTH && offset > 0.0 && turnLeft == turnRight ||
+	   dir == EAST  && 
+	
 	MapPoint *prevPoint = side->getPoint(X,Y);
 	MapPoint *currPoint;
-	offset += speed * (time-lastUpdate)/1000.0;
 	
-	Edge newEdge;
-	Side *newSide = NULL;
 	if(offset < 0.0 && direction == NORTH) { // going SOUTH
 		// todo: make wall
 		if(Y == 1) {

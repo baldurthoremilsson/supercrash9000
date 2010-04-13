@@ -4,8 +4,6 @@
 #include <GL/glut.h>
 
 HumanPlayer::HumanPlayer(int x, int y, Edge dir, MapSide *mside, const Color &c): SuperPlayer(x, y, dir, mside, c) {
-	turnLeft = false;
-	turnRight = false;
 }
 
 HumanPlayer::~HumanPlayer() {
