@@ -17,6 +17,8 @@ class SuperPlayer: public SuperObject {
 		float speed;
 		Color color;
 		
+		list<SuperObject*> objects;
+		
 		bool turnLeft;
 		bool turnRight;
 		

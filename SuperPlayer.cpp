@@ -229,6 +229,9 @@ void SuperPlayer::update(int time) {
 	
 	if(collisionHV->getHorizWall() || collisionHV->getVertWall() || collisionH->getHorizWall() || collisionV->getVertWall())
 		; // colided!
+	if(collisionHV->getObject()) {
+		
+	}
 	
 	lastUpdate = time;
 }
