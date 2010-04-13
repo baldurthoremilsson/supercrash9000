@@ -13,6 +13,9 @@ SuperPlayer::SuperPlayer(int x, int y, Edge dir, MapSide *mside, const Color &c)
 	direction = dir;
 	side = mside;
 	color = c;
+	
+	turnLeft = false;
+	turnRight = false;
 }
 
 SuperPlayer::~SuperPlayer() {
@@ -57,9 +60,40 @@ void SuperPlayer::draw() {
 
 void SuperPlayer::update(int time) {
 	// todo: PowerUp updates
+	offset += speed * (time-lastUpdate)/1000.0;
+	
+	if(offset >= 0.0 && offset <= 1.0)
+		return;
+	
+	Edge dir;
+	if(direction == NORTH && speed > 0.0 && turnLeft == turnRight ||
+	   direction == EAST  && speed > 0.0 && turnLeft ||
+	   direction == EAST  && speed < 0.0 && turnRight)
+		dir = NORTH;
+	else if(direction == NORTH && speed < 0.0 && turnLeft == turnRight ||
+	        direction == EAST  && speed > 0.0 && turnRight ||
+	        direction == EAST  && speed < 0.0 && turnLeft)
+		dir = SOUTH;
+	else if(direction == EAST  && speed > 0.0 && turnLeft == turnRight ||
+	        directoin == NORTH && speed < 0.0 && turnLeft ||
+	        directoin == NORTH && speed > 0.0 && turnRight)
+		dir = EAST;
+	else
+		dir = WEST;
+	
+	switch(dir) {
+		case NORTH: X++; break;
+		case SOUTH: X--; break;
+		case EAST: Y++; break;
+		case WEST: Y--; break;
+	}
+	// sumthin
+	
+	Edge farEdge = side->getEdge(dir);
+	MapSide *side;
+	
 	MapPoint *prevPoint = side->getPoint(X,Y);
 	MapPoint *currPoint;
-	offset += speed * (time-lastUpdate)/1000.0;
 	
 	Edge newEdge;
 	Side *newSide = NULL;
