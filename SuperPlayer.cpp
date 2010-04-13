@@ -87,10 +87,10 @@ void SuperPlayer::update(int time) {
 		dir = WEST;
 	
 	switch(dir) {
-		case NORTH: X++; break;
-		case SOUTH: X--; break;
-		case EAST: Y++; break;
-		case WEST: Y--; break;
+		case NORTH: Y++; break;
+		case SOUTH: Y--; break;
+		case EAST: X++; break;
+		case WEST: X--; break;
 	}
 	// sumthin
 	
@@ -99,91 +99,91 @@ void SuperPlayer::update(int time) {
 	int farX = X;
 	int farY = Y;
 	
-	if(X == 0) { // dir == SOUTH
+	if(X == 0) { // dir == WEST
 		farSide = side->getSide(dir);
 		// todo: create wall
 		
 		switch(farEdge) {
 			case NORTH:
-				farX = 
-				farY = 
+				farX = farSide->getX() - (Y-1);
+				farY = farSide->getY();
 				break;
 			case SOUTH:
-				farX = 
-				farY = 
+				farX = Y;
+				farY = 1;
 				break;
 			case EAST:
-				farX = 
-				farY = 
+				farX = farSide->getX();
+				farY = Y;
 				break;
 			case WEST:
-				farX = 
-				farY = 
+				farX = 1;
+				farY = farSide->getY() - (Y-1);
 				break;
 		}
-	} else if(X > side->getX()) { // dir == NORTH
+	} else if(X > side->getX()) { // dir == EAST
 		farSide = side->getSide(dir);
 		
 		switch(farEdge) {
 			case NORTH:
-				farX = 
-				farY = 
+				farX = Y;
+				farY = farSide->getX();
 				break;
 			case SOUTH:
-				farX = 
-				farY = 
+				farX = farSide->getX() - (Y-1);
+				farY = 1;
 				break;
 			case EAST:
-				farX = 
-				farY = 
+				farX = farSide->getX();
+				farY = farSide->getY() - (Y-1);
 				break;
 			case WEST:
-				farX = 
-				farY = 
+				farX = 1;
+				farY = Y;
 				break;
 		}
 	}
-	if(Y == 0) { // dir == WEST
+	if(Y == 0) { // dir == SOUTH
 		farSide = side->getSide(dir);
 		// todo: createwall
 		
 		switch(farEdge) {
 			case NORTH:
-				farX = 
-				farY = 
+				farX = X;
+				farY = farSide->getY();
 				break;
 			case SOUTH:
-				farX = 
-				farY = 
+				farX = farSide->getX() - (X-1);
+				farY = 1;
 				break;
 			case EAST:
-				farX = 
-				farY = 
+				farX = farSide->getX();
+				farY = farSide->getY() - (X-1);
 				break;
 			case WEST:
-				farX = 
-				farY = 
+				farX = 1;
+				farY = X;
 				break;
 		}
-	} else if(Y > side->getY()) { // dir == EAST
+	} else if(Y > side->getY()) { // dir == NORTH
 		farSide = side->getSide(dir);
 		
 		switch(farEdge) {
 			case NORTH:
-				farX = 
-				farY = 
+				farX = farSide->getX() - (X-1);
+				farY = farSide->getY();
 				break;
 			case SOUTH:
-				farX = 
-				farY = 
+				farX = X;
+				farY = 1;
 				break;
 			case EAST:
-				farX = 
-				farY = 
+				farX = farSide->getX();
+				farY = X;
 				break;
 			case WEST:
-				farX = 
-				farY = 
+				farX = 1;
+				farY = farSide->getY() - (X-1);
 				break;
 		}
 	}
