@@ -2,7 +2,6 @@
 
 #include "Map.h"
 #include "MapSide.h"
-#include "definitions.h"
 #include <GL/gl.h>
 #include <GL/glut.h>
 
@@ -56,6 +55,30 @@ Map::~Map() {
 	delete backSide;
 	delete leftSide;
 	delete rightSide;
+}
+
+MapSide* Map::getTop() {
+	return topSide;
+}
+
+MapSide* Map::getBottom() {
+	return bottomSide;
+}
+
+MapSide* Map::getLeft() {
+	return leftSide;
+}
+
+MapSide* Map::getRight() {
+	return rightSide;
+}
+
+MapSide* Map::getFront() {
+	return frontSide;
+}
+
+MapSide* Map::getBack() {
+	return backSide;
 }
 
 void Map::display() {

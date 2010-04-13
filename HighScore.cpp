@@ -13,7 +13,7 @@
 
 using namespace std;
 
-HighScore::HighScore(SuperCrash *sc) {
+HighScore::HighScore() {
 	rank = -1;
 	mode = 0;
 	menuTitle = "High Scores";
@@ -36,8 +36,7 @@ HighScore::HighScore(SuperCrash *sc) {
 	highScoreScore.push_back(1500);
 	highScoreScore.push_back(1000);
 	highScoreScore.push_back(500);
-	
-	superCrash = sc;
+
 }
 
 HighScore::~HighScore() {
@@ -139,7 +138,7 @@ void HighScore::keyboardDown(unsigned char key) {
 	
 	if (mode == 0 && key == 27 /* ESC */) { 
 		cout << "Let's go from High Scores back to main menu now\n";
-		superCrash->setCurrent(0);
+		SuperCrash::getInstance()->setCurrent(0);
 	}
 	
 }

@@ -3,7 +3,6 @@
 #ifndef _MAP_H
 #define _MAP_H
 
-#include "definitions.h"
 #include "MapSide.h"
 
 class Map: public SuperObject {
@@ -21,6 +20,13 @@ class Map: public SuperObject {
 	public:
 		Map(int x, int y, int z);
 		~Map();
+		
+		MapSide* getTop();
+		MapSide* getBottom();
+		MapSide* getLeft();
+		MapSide* getRight();
+		MapSide* getFront();
+		MapSide* getBack();
 		
 		void display();
 		void update(int time);

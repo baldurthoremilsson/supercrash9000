@@ -6,12 +6,14 @@
 #include "SuperPlayer.h"
 
 class HumanPlayer: public SuperPlayer {
+	private:
+		bool turnLeft;
+		bool turnRight;
+		
 	public:
-		HumanPlayer(int x, int y, Edge direction);
+		HumanPlayer(int x, int y, Edge dir, MapSide *mside, const Color &c);
 		~HumanPlayer();
 		
-		void display();
-		void update(int time);
 		void keyboardUp(unsigned char key);
 		void keyboardDown(unsigned char key);
 		void keyboardSpecialUp(int key);

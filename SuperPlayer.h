@@ -5,6 +5,7 @@
 
 #include "SuperObject.h"
 #include "MapSide.h"
+#include "Color.h"
 
 class SuperPlayer: public SuperObject {
 	protected:
@@ -14,16 +15,20 @@ class SuperPlayer: public SuperObject {
 		Edge direction;
 		float offset;
 		float speed;
+		Color color;
+		int lastUpdate;
 		
+		int getRotation();
 		Edge getEdge();
-		float getRotation();
 		
 	public:
-		SuperPlayer(int x, int y, Edge direction);
+		SuperPlayer(int x, int y, Edge dir, MapSide *mside, const Color &c);
 		~SuperPlayer();
 		
 		virtual void display();
 		virtual void update(int time);
+		
+		//friend PowerUp;
 };
 
 #endif

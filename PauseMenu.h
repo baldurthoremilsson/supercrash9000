@@ -16,7 +16,7 @@ class PauseMenu : public SuperMenu {
 		void resumeGame();
 		void exitGame();
 	public:
-		PauseMenu(SuperCrash *sc);
+		PauseMenu();
 		virtual ~PauseMenu();
 };
 

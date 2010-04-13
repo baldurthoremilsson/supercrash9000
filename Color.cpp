@@ -2,23 +2,50 @@
 
 #include "Color.h"
 
-Color::Color(float red, float green, float blue) {
-	color[0] = red;
-	color[1] = green;
-	color[2] = blue;
+Color::Color() {
+	colors[RED] = 0.0;
+	colors[GREEN] = 0.0;
+	colors[BLUE] = 0.0;
+}
+
+Color::Color(float r, float g, float b) {
+	colors[RED] = r;
+	colors[GREEN] = g;
+	colors[BLUE] = b;
 }
 
 Color::~Color() {
 }
 
 Color& Color::operator=(const Color &c) {
-	color[0] = c.color[0];
-	color[1] = c.color[1];
-	color[2] = c.color[2];
+	if(this == &c)
+		return *this;
+	
+	colors[RED] = c.getRed();
+	colors[GREEN] = c.getGreen();
+	colors[BLUE] = c.getBlue();
 	
 	return *this;
 }
 
-float* Color::get3fv() {
-	return color;
+float Color::getRed() const {
+	return colors[RED];
+}
+
+float Color::getGreen() const {
+	return colors[GREEN];
+}
+
+float Color::getBlue() const {
+	return colors[BLUE];
+}
+
+void Color::setColor(float r, float g, float b) {
+	colors[RED] = r;
+	colors[GREEN] = g;
+	colors[BLUE] = b;
+}
+
+const float* Color::get3fv() {
+	return colors;
 }

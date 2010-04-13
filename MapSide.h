@@ -3,9 +3,13 @@
 #ifndef _MAPSIDE_H
 #define _MAPSIDE_H
 
-#include "definitions.h"
 #include "SuperObject.h"
+#include "MapPoint.h"
+#include "Color.h"
+#include <list>
 #include <GL/gl.h>
+
+using namespace std;
 
 enum Edge {
 	NORTH,
@@ -17,7 +21,7 @@ enum Edge {
 class MapSide: public SuperObject {
 	private:
 		int X;
-		int Z;
+		int Y;
 		
 		MapSide *northSide;
 		MapSide *southSide;
@@ -29,26 +33,28 @@ class MapSide: public SuperObject {
 		Edge eastEdge;
 		Edge westEdge;
 		
-		GLfloat planeColor[3];
-		GLfloat gridColor[3];
+		Color planelColor;
+		Color gridColor;
+		
+		MapPoint **points;
+		list<SuperObject*> objects;
 		
 	public:
-		MapSide(int x, int z);
+		MapSide(int x, int y);
 		~MapSide();
 		
 		void setX(int x);
-		void setZ(int z);
+		void setY(int y);
 		int getX();
-		int getZ();
+		int getY();
 		
 		void setNorth(MapSide *s, Edge sn);
 		void setSouth(MapSide *s, Edge sn);
 		void setEast(MapSide *s, Edge sn);
 		void setWest(MapSide *s, Edge sn);
-		MapSide* getNorth();
-		MapSide* getSouth();
-		MapSide* getEast();
-		MapSide* getWest();
+		
+		MapSide* getSide(Edge e);
+		Edge getEdge(Edge e);
 		
 		void display();
 		void update(int time);

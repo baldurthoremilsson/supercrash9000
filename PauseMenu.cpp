@@ -11,12 +11,10 @@
 
 using namespace std;
 
-PauseMenu::PauseMenu(SuperCrash *sc) {
+PauseMenu::PauseMenu() {
 	menuTitle = "    PAUSED";
 	menuItemVector.push_back("Resume game");
 	menuItemVector.push_back("Exit to main menu");
-	
-	superCrash = sc;
 	
 	calibrate();
 }
@@ -26,11 +24,11 @@ PauseMenu::~PauseMenu() {
 
 void PauseMenu::resumeGame() {
 	cout << "Let's resume the game now\n";
-	superCrash->setCurrent(1);
+	SuperCrash::getInstance()->setCurrent(1);
 }
 void PauseMenu::exitGame() {
 	cout << "Pause Menu wants to go back to main menu\n";
-	superCrash->setCurrent(0);
+	SuperCrash::getInstance()->setCurrent(0);
 }
 
 void PauseMenu::selectItem(int n) {
