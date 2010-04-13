@@ -65,6 +65,8 @@ void SuperPlayer::update(int time) {
 	if(offset >= 0.0 && offset <= 1.0)
 		return;
 	
+	// todo: create wall
+	
 	if(offset < 0.0)
 		offset += 1.0;
 	else
@@ -80,11 +82,16 @@ void SuperPlayer::update(int time) {
 	        direction == EAST  && speed < 0.0 && turnLeft)
 		dir = SOUTH;
 	else if(direction == EAST  && speed > 0.0 && turnLeft == turnRight ||
-	        directoin == NORTH && speed < 0.0 && turnLeft ||
-	        directoin == NORTH && speed > 0.0 && turnRight)
+	        direction == NORTH && speed < 0.0 && turnLeft ||
+	        direction == NORTH && speed > 0.0 && turnRight)
 		dir = EAST;
 	else
 		dir = WEST;
+	
+	if(speed < 0.0 && (dir == NORTH || dir == EAST) || speed > 0.0 && (dir == SOUTH || dir == WEST))
+		speed *= -1.0;
+	
+	direction = (dir == NORTH || dir == SOUTH) ? NORTH : EAST;
 	
 	switch(dir) {
 		case NORTH: Y++; break;
@@ -92,7 +99,6 @@ void SuperPlayer::update(int time) {
 		case EAST: X++; break;
 		case WEST: X--; break;
 	}
-	// sumthin
 	
 	Edge farEdge = side->getEdge(dir);
 	MapSide *farSide = side;
@@ -188,115 +194,15 @@ void SuperPlayer::update(int time) {
 		}
 	}
 	
-	MapPoint *prevPoint = side->getPoint(X,Y);
-	MapPoint *currPoint;
+	if(side != farSide && (farEdge == SOUTH || farEdge == WEST)
+		; // todo: create wall
 	
-	Edge newEdge;
-	Side *newSide = NULL;
-	if(offset < 0.0 && direction == NORTH) { // going SOUTH
-		// todo: make wall
-		if(Y == 1) {
-			newEdge = side->getEdge(SOUTH);
-			newSide = side->getSide(SOUTH);
-			
-			switch(newEdge) {
-			case NORTH:
-				Y = newSide->getY();
-				break;
-			case SOUTH:
-				X = newSide->getX() - (X-1);
-				break;
-			case EAST:
-				Y = newSide->getY() - (X-1);
-				X = newSide->getX();
-				break;
-			case WEST:
-				Y = X;
-				X = 1;
-				break;
-			}
-		} else
-			Y--;
-	} else if(offset < 0.0 && direction == EAST) { // going WEST
-		// todo: make wall
-		if(X == 1) {
-			newEdge = side->getEdge(WEST);
-			newSide = side->getSide(WEST);
-			
-			switch(newEdge) {
-			case NORTH:
-				X = newSide->getX() - (Y-1);
-				Y = newSide->getY();
-				break;
-			case SOUTH:
-				X = Y;
-				Y = 1;
-				break;
-			case EAST:
-				X = newSide->getX();
-				break;
-			case WEST:
-				Y = newSide->getY() - (Y-1)
-				break;
-			}
-		} else
-			X--;
-	} else if(offset > 1.0 && direction NORTH) { // going NORTH
-		// todo: make wall
-		if(Y == side->getX()) {
-			newEdge = side->getEdge(NORTH);
-			newSide = side->getSide(NORTH);
-			
-			switch(newEdge) {
-			case NORTH:
-				Y = newSide->getY() - (Y-1);
-				X = newSide->getX();
-				break;
-			case SOUTH:
-				Y = 1;
-				break;
-			case EAST:
-				Y = X;
-				X = newSide->getX();
-				break;
-			case WEST:
-				Y = newSide->getY() - (X-1);
-				X = 1;
-				break;
-			}
-		} else
-			Y++;
-	} else { // offset > 1.0 && direction == EAST // going EAST
-		// todo: make wall
-		if(X == side->getY()) {
-			newEdge = side->getEdge(EAST);
-			newSide = side->getSide(EAST);
-			
-			switch(newEdge) {
-			case NORTH:
-				Y = X;
-				X = newSide->getX();
-				break;
-			case SOUTH:
-				X = newSide->getX() - (Y-1);
-				Y = 1;
-				break;
-			case EAST:
-				Y = newSide->getY() - (Y-1);
-				X = newSide->getX();
-				break;
-			case WEST:
-				X = 1;
-				break;
-			}
-		} else
-			X++;
-	}
-	if(newSide == NULL)
-		currPoint = side->getPoint(X,Y);
-	else {
-		currPoint = newSide->getPoint(X,Y);
-	}
+	side = farSide;
+	X = farX;
+	Y = farY;
+	
+	// todo: collision detection
+	
 	
 	lastUpdate = time;
 }
