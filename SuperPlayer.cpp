@@ -65,6 +65,11 @@ void SuperPlayer::update(int time) {
 	if(offset >= 0.0 && offset <= 1.0)
 		return;
 	
+	if(offset < 0.0)
+		offset += 1.0;
+	else
+		offset -= 1.0;
+	
 	Edge dir;
 	if(direction == NORTH && speed > 0.0 && turnLeft == turnRight ||
 	   direction == EAST  && speed > 0.0 && turnLeft ||
@@ -90,7 +95,98 @@ void SuperPlayer::update(int time) {
 	// sumthin
 	
 	Edge farEdge = side->getEdge(dir);
-	MapSide *side;
+	MapSide *farSide = side;
+	int farX = X;
+	int farY = Y;
+	
+	if(X == 0) { // dir == SOUTH
+		farSide = side->getSide(dir);
+		// todo: create wall
+		
+		switch(farEdge) {
+			case NORTH:
+				farX = 
+				farY = 
+				break;
+			case SOUTH:
+				farX = 
+				farY = 
+				break;
+			case EAST:
+				farX = 
+				farY = 
+				break;
+			case WEST:
+				farX = 
+				farY = 
+				break;
+		}
+	} else if(X > side->getX()) { // dir == NORTH
+		farSide = side->getSide(dir);
+		
+		switch(farEdge) {
+			case NORTH:
+				farX = 
+				farY = 
+				break;
+			case SOUTH:
+				farX = 
+				farY = 
+				break;
+			case EAST:
+				farX = 
+				farY = 
+				break;
+			case WEST:
+				farX = 
+				farY = 
+				break;
+		}
+	}
+	if(Y == 0) { // dir == WEST
+		farSide = side->getSide(dir);
+		// todo: createwall
+		
+		switch(farEdge) {
+			case NORTH:
+				farX = 
+				farY = 
+				break;
+			case SOUTH:
+				farX = 
+				farY = 
+				break;
+			case EAST:
+				farX = 
+				farY = 
+				break;
+			case WEST:
+				farX = 
+				farY = 
+				break;
+		}
+	} else if(Y > side->getY()) { // dir == EAST
+		farSide = side->getSide(dir);
+		
+		switch(farEdge) {
+			case NORTH:
+				farX = 
+				farY = 
+				break;
+			case SOUTH:
+				farX = 
+				farY = 
+				break;
+			case EAST:
+				farX = 
+				farY = 
+				break;
+			case WEST:
+				farX = 
+				farY = 
+				break;
+		}
+	}
 	
 	MapPoint *prevPoint = side->getPoint(X,Y);
 	MapPoint *currPoint;
