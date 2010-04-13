@@ -43,7 +43,7 @@ Edge SuperPlayer::getEdge() {
 		return WEST;
 }
 
-void SuperPlayer::draw() {
+void SuperPlayer::display() {
 	glColor3fv(color.get3fv());
 	glPushMatrix();
 		glRotatef(this->getRotation(), 0.0, -1.0, 0.0);
@@ -213,9 +213,9 @@ void SuperPlayer::update(int time) {
 	}
 	
 	if(side != farSide && farEdge == SOUTH)
-		farSide->getPoint()->setHorizWall(color);
+		farSide->getPoint(0,farY)->setHorizWall(color);
 	else if(side != farSide && farEdge == WEST)
-		farSide->getPoint()->setVertWall(color);
+		farSide->getPoint(farX,0)->setVertWall(color);
 	
 	side = farSide;
 	X = farX;

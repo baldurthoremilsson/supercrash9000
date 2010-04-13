@@ -7,7 +7,7 @@
 using namespace std;
 
 MapPoint::MapPoint() {
-	horiz = NULL
+	horiz = NULL;
 	vert = NULL;
 }
 
@@ -37,6 +37,6 @@ const Color* MapPoint::getHorizWall() {
 	return horiz;
 }
 
-const Color* MapPoint::setVertWall() {
+const Color* MapPoint::getVertWall() {
 	return vert;
 }

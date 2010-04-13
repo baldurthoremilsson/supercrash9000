@@ -33,7 +33,7 @@ class MapSide: public SuperObject {
 		Edge eastEdge;
 		Edge westEdge;
 		
-		Color planelColor;
+		Color panelColor;
 		Color gridColor;
 		
 		MapPoint **points;

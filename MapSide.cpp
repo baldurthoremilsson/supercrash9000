@@ -78,7 +78,7 @@ Edge MapSide::getEdge(Edge e) {
 }
 
 MapPoint* MapSide::getPoint(int x, int y) {
-	return point[x][y];
+	return &points[x][y];
 }
 
 void MapSide::display() {
@@ -94,7 +94,7 @@ void MapSide::display() {
 	}
 	glEnd();
 	
-	glColor3fv(planelColor.get3fv());
+	glColor3fv(panelColor.get3fv());
 	glBegin(GL_QUADS);
 		glVertex3f(-X/2.0, 0.0, -Y/2.0);
 		glVertex3f(-X/2.0, 0.0,  Y/2.0);

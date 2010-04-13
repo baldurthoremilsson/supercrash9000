@@ -23,7 +23,7 @@ class MapPoint {
 		void setHorizWall(const Color &c);
 		void setVertWall(const Color &c);
 		const Color* getHorizWall();
-		const Color* setVertWall();
+		const Color* getVertWall();
 };
 
 #endif
