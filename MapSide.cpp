@@ -13,11 +13,6 @@ MapSide::MapSide(int x, int y) {
 	points = new MapPoint*[x+1];
 	for (int row = 0; row < x+1; row++) {
 		points[row] = new MapPoint[y+1];
-		
-		for (int col=0; col<y+1; col++) {
-			points[row][col].setX(row);
-			points[row][col].setY(col);
-		}
 	}
 }
 
@@ -80,6 +75,10 @@ Edge MapSide::getEdge(Edge e) {
 		return eastEdge;
 	if(e == WEST)
 		return westEdge;
+}
+
+MapPoint* MapSide::getPoint(int x, int y) {
+	return point[x][y];
 }
 
 void MapSide::display() {

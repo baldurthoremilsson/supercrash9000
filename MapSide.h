@@ -56,6 +56,8 @@ class MapSide: public SuperObject {
 		MapSide* getSide(Edge e);
 		Edge getEdge(Edge e);
 		
+		MapPoint* getPoint(int x, int y);
+		
 		void display();
 		void update(int time);
 		void keyboardUp(unsigned char key);
