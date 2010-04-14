@@ -11,6 +11,7 @@ SuperCrash::SuperCrash(): SuperEngine() {
 	mainMenu = new MainMenu();
 	pauseMenu = new PauseMenu();
 	highScore = new HighScore();
+	about = new About();
 
 	current = mainMenu;
 	//current = superGame;
@@ -23,6 +24,7 @@ SuperCrash::~SuperCrash() {
 	delete mainMenu;
 	delete pauseMenu;
 	delete highScore;
+	delete about;
 }
 
 SuperCrash* SuperCrash::getInstance() {
@@ -68,4 +70,6 @@ void SuperCrash::setCurrent(int n) {
 		current = pauseMenu;
 	if (n==4)
 		exit(0);
+	if (n==5)
+		current = about;
 }

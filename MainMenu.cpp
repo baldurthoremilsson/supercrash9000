@@ -13,9 +13,10 @@ using namespace std;
 
 MainMenu::MainMenu() {
 	menuTitle = "Supercrash 9000";
-	menuItemVector.push_back("Start Game");
-	menuItemVector.push_back("View High Scores");
-	menuItemVector.push_back("Exit Game");
+	menuItemVector.push_back("Start game");
+	menuItemVector.push_back("View high scores");
+	menuItemVector.push_back("About the game");
+	menuItemVector.push_back("Exit game");
 	
 	
 	calibrate();
@@ -25,17 +26,16 @@ MainMenu::~MainMenu() {
 }
 
 void MainMenu::startGame() {
-	cout << "Let's start the game now\n";
 	SuperCrash::getInstance()->setCurrent(1);
 }
 void MainMenu::viewHighScores() {
-	cout << "Let's look at the high scores now\n";
 	SuperCrash::getInstance()->setCurrent(2);
 }
 void MainMenu::exitGame() {
-	cout << "Let's exit the game now\n";
-	//superCrash->setCurrent(4); //exit
 	SuperCrash::getInstance()->setCurrent(4);
+}
+void MainMenu::aboutGame() {
+	SuperCrash::getInstance()->setCurrent(5);
 }
 void MainMenu::selectItem(int n) {
 	switch(n) {
@@ -44,6 +44,8 @@ void MainMenu::selectItem(int n) {
 		case 1:
 			viewHighScores(); break;
 		case 2:
+			aboutGame(); break;
+		case 3:
 			exitGame(); break;
 	}
 }

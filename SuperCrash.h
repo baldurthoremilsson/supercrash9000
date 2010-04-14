@@ -8,6 +8,7 @@
 #include "MainMenu.h"
 #include "PauseMenu.h"
 #include "HighScore.h"
+#include "About.h"
 
 
 //Tilvik af SuperCrash stendur fyrir eintak af leiknum
@@ -17,6 +18,7 @@ class SuperCrash: public SuperEngine {
 		MainMenu *mainMenu;
 		PauseMenu *pauseMenu;
 		HighScore *highScore;
+		About *about;
 		
 		SuperObject *current;
 		
