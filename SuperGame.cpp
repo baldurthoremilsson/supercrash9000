@@ -12,21 +12,24 @@
 using namespace std;
 
 SuperGame::SuperGame() {
-	map = new Map(5, 5, 5);
-	player1 = new HumanPlayer(3, 3, NORTH, map->getTop(), Color(1.0, 0.0, 0.0));
+	map = new Map(10, 5, 5);
+	player1 = new HumanPlayer(1, 1, EAST, map->getTop(), Color(1.0, 0.0, 0.0));
 }
 
 SuperGame::~SuperGame() {
+	delete map;
+	delete player1;
 }
 
 void SuperGame::display() {
 	glLoadIdentity();
-	gluLookAt(-10.0, -10.0, -10.0,  0.0, 0.0, 0.0,  0.0, 1.0, 0.0);
+	gluLookAt(-8.0, 8.0, -8.0,  0.0, 0.0, 0.0,  0.0, 1.0, 0.0);
 	glColor3f(1.0, 1.0, 1.0);
 	map->display();
 }
 
 void SuperGame::update(int time) {
+	player1->update(time);
 }
 
 void SuperGame::keyboardUp(unsigned char key) {

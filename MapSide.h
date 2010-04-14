@@ -58,6 +58,9 @@ class MapSide: public SuperObject {
 		
 		MapPoint* getPoint(int x, int y);
 		
+		void addObject(SuperObject *o);
+		void removeObject(SuperObject *o);
+		
 		void display();
 		void update(int time);
 		void keyboardUp(unsigned char key);

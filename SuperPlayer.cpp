@@ -14,6 +14,11 @@ SuperPlayer::SuperPlayer(int x, int y, Edge dir, MapSide *mside, const Color &c)
 	side = mside;
 	color = c;
 	
+	offset = 0.0;
+	speed = 0.1;
+	
+	side->addObject(this);
+	
 	turnLeft = false;
 	turnRight = false;
 }
@@ -49,37 +54,21 @@ void SuperPlayer::display() {
 		glRotatef(this->getRotation(), 0.0, -1.0, 0.0);
 		glTranslatef((X-side->getX())/2.0, 0.0, (Y-side->getY())/2.0);
 		glBegin(GL_TRIANGLE_STRIP);
-			glVertex3f(-1.0, 0.5,  0.0 );
-			glVertex3f( 0.0, 0.0,  0.0 );
-			glVertex3f(-1.0, 0.0,  0.25);
-			glVertex3f(-1.0, 0.5, -0.25);
-			glVertex3f( 0.0, 0.0,  0.0 );
+			glVertex3f( 0.0,  0.0, offset+0.0);
+			glVertex3f( 0.0,  0.5, offset-1.0);
+			glVertex3f(-0.25, 0.0, offset-1.0);
+			glVertex3f( 0.25, 0.0, offset-1.0);
+			glVertex3f( 0.0,  0.0, offset+0.0);
 		glEnd();
 	glPopMatrix();
 }
 
+#include <iostream>
+
 void SuperPlayer::update(int time) {
+	std::cout << offset << "\n";
 	// todo: PowerUp updates
 	offset += speed * (time-lastUpdate)/1000.0;
-<<<<<<< HEAD:SuperPlayer.cpp
-	if(offset >= 0.0 && offset <= 1.0)
-		return;
-	
-	Edge heading;
-	if(dir == NORTH && offset > 0.0 && turnLeft == turnRight ||
-	   dir == EAST  && 
-	
-	MapPoint *prevPoint = side->getPoint(X,Y);
-	MapPoint *currPoint;
-	
-	if(offset < 0.0 && direction == NORTH) { // going SOUTH
-		// todo: make wall
-		if(Y == 1) {
-			newEdge = side->getEdge(SOUTH);
-			newSide = side->getSide(SOUTH);
-			
-			switch(newEdge) {
-=======
 	
 	if(offset >= 0.0 && offset <= 1.0)
 		return; // did not cross MapPoints
@@ -136,7 +125,7 @@ void SuperPlayer::update(int time) {
 		case EAST: X++; break;
 		case WEST: X--; break;
 	}
-	
+	return;
 	Edge farEdge = side->getEdge(dir);
 	MapSide *farSide = side;
 	int farX = X;
@@ -147,7 +136,6 @@ void SuperPlayer::update(int time) {
 		farSide = side->getSide(dir);
 		
 		switch(farEdge) {
->>>>>>> 79708860bf9e9f4cce46958a07633ac53c4b428e:SuperPlayer.cpp
 			case NORTH:
 				farX = farSide->getX() - (Y-1);
 				farY = farSide->getY();
@@ -232,10 +220,15 @@ void SuperPlayer::update(int time) {
 		}
 	}
 	
-	if(side != farSide && farEdge == SOUTH)
+	if(side != farSide && farEdge == SOUTH) {
+		side->removeObject(this);
+		farSide->addObject(this);
+		
+		if(farEdge == SOUTH)
 		farSide->getPoint(0,farY)->setHorizWall(color);
-	else if(side != farSide && farEdge == WEST)
+		else if(farEdge == WEST)
 		farSide->getPoint(farX,0)->setVertWall(color);
+	}
 	
 	side = farSide;
 	X = farX;
@@ -248,9 +241,9 @@ void SuperPlayer::update(int time) {
 	}
 	
 	if(collisionHV->getHorizWall() || collisionHV->getVertWall() || collisionH->getHorizWall() || collisionV->getVertWall())
-		; // colided!
+		; // todo: colided!
 	if(collisionHV->getObject()) {
-		
+		// todo: get object
 	}
 	
 	lastUpdate = time;

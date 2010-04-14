@@ -2,6 +2,7 @@
 
 #include "MapSide.h"
 #include <GL/gl.h>
+#include <GL/glut.h>
 
 MapSide::MapSide(int x, int y) {
 	X = x;
@@ -81,16 +82,39 @@ MapPoint* MapSide::getPoint(int x, int y) {
 	return &points[x][y];
 }
 
+void MapSide::addObject(SuperObject *o) {
+	objects.push_back(o);
+}
+
+void MapSide::removeObject(SuperObject *o) {
+	objects.remove(o);
+}
+
 void MapSide::display() {
 	glColor3fv(gridColor.get3fv());
-	glBegin(GL_LINES);
+	float Xoff = X/2.0;
+	float Yoff = Y/2.0;
+	float gridHeight = 0.05;
+	glBegin(GL_QUADS);
 	for(int i = 0; i < X; i++) {
-		glVertex3f(-X/2.0, 0.0, i-Y/2.0 + 0.5);
-		glVertex3f( X/2.0, 0.0, i-Y/2.0 + 0.5);
+		glVertex3f(i-Xoff + 0.48,       0.00,  Yoff);
+		glVertex3f(i-Xoff + 0.50, gridHeight,  Yoff+gridHeight);
+		glVertex3f(i-Xoff + 0.50, gridHeight, -Yoff-gridHeight);
+		glVertex3f(i-Xoff + 0.48,       0.00, -Yoff);
+		glVertex3f(i-Xoff + 0.50, gridHeight,  Yoff+gridHeight);
+		glVertex3f(i-Xoff + 0.52,       0.00,  Yoff);
+		glVertex3f(i-Xoff + 0.52,       0.00, -Yoff);
+		glVertex3f(i-Xoff + 0.50, gridHeight, -Yoff-gridHeight);
 	}
 	for(int i = 0; i < Y; i++) {
-		glVertex3f(i-X/2.0 + 0.5, 0.0, -Y/2.0);
-		glVertex3f(i-X/2.0 + 0.5, 0.0,  Y/2.0);
+		glVertex3f( Xoff           ,       0.00, i-Yoff + 0.48);
+		glVertex3f( Xoff+gridHeight, gridHeight, i-Yoff + 0.50);
+		glVertex3f(-Xoff-gridHeight, gridHeight, i-Yoff + 0.50);
+		glVertex3f(-Xoff           ,       0.00, i-Yoff + 0.48);
+		glVertex3f( Xoff+gridHeight, gridHeight, i-Yoff + 0.50);
+		glVertex3f( Xoff           ,       0.00, i-Yoff + 0.52);
+		glVertex3f(-Xoff           ,       0.00, i-Yoff + 0.52);
+		glVertex3f(-Xoff-gridHeight, gridHeight, i-Yoff + 0.50);
 	}
 	glEnd();
 	
@@ -101,6 +125,9 @@ void MapSide::display() {
 		glVertex3f( X/2.0, 0.0,  Y/2.0);
 		glVertex3f( X/2.0, 0.0, -Y/2.0);
 	glEnd();
+	
+	for(list<SuperObject*>::iterator it = objects.begin(); it != objects.end(); it++)
+		(*it)->display();
 }
 
 void MapSide::update(int time) {
