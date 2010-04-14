@@ -97,33 +97,33 @@ void MapSide::display() {
 	float Yoff = Y/2.0;
 	float gridHeight = 0.05;
 	glBegin(GL_QUADS);
-	for(int i = 0; i < X; i++) {
-		if(i==0)
-			glColor3f(0.0, 0.0, 0.0);
-		glVertex3f(i-Xoff + 0.48,       0.00, -( Yoff));
-		glVertex3f(i-Xoff + 0.50, gridHeight, -( Yoff+gridHeight));
-		glVertex3f(i-Xoff + 0.50, gridHeight, -(-Yoff-gridHeight));
-		glVertex3f(i-Xoff + 0.48,       0.00, -(-Yoff));
-		glVertex3f(i-Xoff + 0.50, gridHeight, -( Yoff+gridHeight));
-		glVertex3f(i-Xoff + 0.52,       0.00, -( Yoff));
-		glVertex3f(i-Xoff + 0.52,       0.00, -(-Yoff));
-		glVertex3f(i-Xoff + 0.50, gridHeight, -(-Yoff-gridHeight));
-		if(i==0)
-			glColor3fv(gridColor.get3fv());
+	float ld, lu, ru, rd
+	for(int x = 0; x < X; x++) {
+		glVertex3f(x-Xoff + 0.48,       0.00, -( Yoff));
+		glVertex3f(x-Xoff + 0.50, gridHeight, -( Yoff+gridHeight));
+		glVertex3f(x-Xoff + 0.50, gridHeight, -(-Yoff-gridHeight));
+		glVertex3f(x-Xoff + 0.48,       0.00, -(-Yoff));
+		glVertex3f(x-Xoff + 0.50, gridHeight, -( Yoff+gridHeight));
+		glVertex3f(x-Xoff + 0.52,       0.00, -( Yoff));
+		glVertex3f(x-Xoff + 0.52,       0.00, -(-Yoff));
+		glVertex3f(x-Xoff + 0.50, gridHeight, -(-Yoff-gridHeight));
 	}
-	for(int i = 0; i < Y; i++) {
-		if(i==0)
-			glColor3f(0.0, 0.0, 0.0);
-		glVertex3f( Xoff           ,       0.00, -(i-Yoff + 0.48));
-		glVertex3f( Xoff+gridHeight, gridHeight, -(i-Yoff + 0.50));
-		glVertex3f(-Xoff-gridHeight, gridHeight, -(i-Yoff + 0.50));
-		glVertex3f(-Xoff           ,       0.00, -(i-Yoff + 0.48));
-		glVertex3f( Xoff+gridHeight, gridHeight, -(i-Yoff + 0.50));
-		glVertex3f( Xoff           ,       0.00, -(i-Yoff + 0.52));
-		glVertex3f(-Xoff           ,       0.00, -(i-Yoff + 0.52));
-		glVertex3f(-Xoff-gridHeight, gridHeight, -(i-Yoff + 0.50));
-		if(i==0)
-			glColor3fv(gridColor.get3fv());
+	for(int y = 0; y < Y; y++) {
+		glVertex3f( Xoff           ,       0.00, -(y-Yoff + 0.48));
+		glVertex3f( Xoff+gridHeight, gridHeight, -(y-Yoff + 0.50));
+		glVertex3f(-Xoff-gridHeight, gridHeight, -(y-Yoff + 0.50));
+		glVertex3f(-Xoff           ,       0.00, -(y-Yoff + 0.48));
+		glVertex3f( Xoff+gridHeight, gridHeight, -(y-Yoff + 0.50));
+		glVertex3f( Xoff           ,       0.00, -(y-Yoff + 0.52));
+		glVertex3f(-Xoff           ,       0.00, -(y-Yoff + 0.52));
+		glVertex3f(-Xoff-gridHeight, gridHeight, -(y-Yoff + 0.50));
+	}
+	
+	for(int x = 0; x <= X; x++) {
+		for(int y = 0; y <= Y; y++) {
+			if(getPoint()->getVertWall(x,y))
+				
+		}
 	}
 	glEnd();
 	

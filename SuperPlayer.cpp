@@ -3,6 +3,7 @@
 #include "SuperPlayer.h"
 #include "Color.h"
 #include <cstddef>
+// todo: remove debug
 #include <iostream>
 #include <GL/gl.h>
 #include <GL/glut.h>
@@ -26,6 +27,38 @@ SuperPlayer::SuperPlayer(int x, int y, Edge dir, MapSide *mside, const Color &c)
 }
 
 SuperPlayer::~SuperPlayer() {
+}
+
+
+int SuperPlayer::getRotation() {
+	if(direction == NORTH && speed >= 0.0)
+		return 0;
+	if(direction == NORTH && speed < 0.0)
+		return 180;
+	if(direction == EAST && speed >= 0.0)
+		return 90;
+	// if(direction == EAST && speed < 0.0)
+		return 270;
+}
+
+Edge SuperPlayer::getEdge() {
+	if(direction == NORTH && speed >= 0.0)
+		return NORTH;
+	if(direction == NORTH && speed < 0.0)
+		return SOUTH;
+	if(direction == EAST && speed >= 0.0)
+		return EAST;
+	// if(direction == EAST && speed < 0.0)
+		return WEST;
+}
+
+void SuperPlayer::setAttributes(int newX, int newY, MapSide *newSide, Edge newDirection) {
+	X = newX;
+	Y = newY;
+	direction = newDirection;
+	side->removeObject(this);
+	side = newSide;
+	side->addObject(this);
 }
 
 void SuperPlayer::goWest() {
@@ -164,38 +197,6 @@ void SuperPlayer::goSouth() {
 		Y--;
 }
 
-
-int SuperPlayer::getRotation() {
-	if(direction == NORTH && speed >= 0.0)
-		return 0;
-	if(direction == NORTH && speed < 0.0)
-		return 180;
-	if(direction == EAST && speed >= 0.0)
-		return 90;
-	// if(direction == EAST && speed < 0.0)
-		return 270;
-}
-
-Edge SuperPlayer::getEdge() {
-	if(direction == NORTH && speed >= 0.0)
-		return NORTH;
-	if(direction == NORTH && speed < 0.0)
-		return SOUTH;
-	if(direction == EAST && speed >= 0.0)
-		return EAST;
-	// if(direction == EAST && speed < 0.0)
-		return WEST;
-}
-
-void SuperPlayer::setAttributes(int newX, int newY, MapSide *newSide, Edge newDirection) {
-	X = newX;
-	Y = newY;
-	direction = newDirection;
-	side->removeObject(this);
-	side = newSide;
-	side->addObject(this);
-}
-
 void SuperPlayer::display() {
 	glColor3fv(color.get3fv());
 	glPushMatrix();
@@ -212,26 +213,27 @@ void SuperPlayer::display() {
 		glEnd();
 		*/
 	glPopMatrix();
-	
-	std::cout << X-side->getX()/2.0-0.5 << "," << Y-side->getY()/2.0-0.5 << std::endl;
 }
 
 void SuperPlayer::update(int time) {
-	return;
-	std::cout << offset << "\n";
 	// todo: PowerUp updates
-	offset += speed * (time-lastUpdate)/1000.0;
+	if(direction == NORTH || direction == EAST)
+		offset += speed * (time-lastUpdate)/1000.0;
+	else
+		offset -= speed * (time-lastUpdate)/1000.0;
 	
 	if(offset >= 0.0 && offset <= 1.0)
 		return; // did not cross MapPoints
 	
+	/* oldstuff
 	// preparation for collision detection
 	MapPoint *collisionHV;
 	MapPoint *collisionH;
 	MapPoint *collisionV;
+	*/
 	
 	// creating a wall
-	if(direction == NORTH)
+	if(direction == NORTH || direction == SOUTH)
 		side->getPoint(X,Y)->setVertWall(color);
 	else
 		side->getPoint(X,Y)->setHorizWall(color);
@@ -241,6 +243,17 @@ void SuperPlayer::update(int time) {
 		offset += 1.0;
 	else
 		offset -= 1.0;
+	
+	switch(direction) {
+		case NORTH: goNorth(); break;
+		case SOUTH: goSouth(); break;
+		case EAST: goEast(); break;
+		case WEST: goWest(); break;
+	}
+	
+	
+	
+	return;
 	
 	// dir == the way we're heading
 	Edge dir;

@@ -12,6 +12,8 @@ MapPoint::MapPoint() {
 }
 
 MapPoint::~MapPoint() {
+	delete horiz;
+	delete vert;
 }
 
 SuperObject* MapPoint::getObject() {

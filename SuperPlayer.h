@@ -28,17 +28,17 @@ class SuperPlayer: public SuperObject {
 		Edge getEdge();
 		void setAttributes(int newX, int newY, MapSide *newSide, Edge newDirection);
 		
+		void goWest();
+		void goEast();
+		void goNorth();
+		void goSouth();
+		
 	public:
 		SuperPlayer(int x, int y, Edge dir, MapSide *mside, const Color &c);
 		~SuperPlayer();
 		
 		virtual void display();
 		virtual void update(int time);
-		
-		void goWest();
-		void goEast();
-		void goNorth();
-		void goSouth();
 		
 		//friend PowerUp;
 };
