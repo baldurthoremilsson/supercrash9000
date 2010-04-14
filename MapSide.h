@@ -40,7 +40,7 @@ class MapSide: public SuperObject {
 		list<SuperObject*> objects;
 		
 	public:
-		MapSide(int x, int y);
+		MapSide(int x, int y, Color panel);
 		~MapSide();
 		
 		void setX(int x);

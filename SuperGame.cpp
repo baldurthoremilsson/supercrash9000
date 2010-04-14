@@ -12,8 +12,8 @@
 using namespace std;
 
 SuperGame::SuperGame() {
-	map = new Map(10, 5, 5);
-	player1 = new HumanPlayer(1, 1, EAST, map->getTop(), Color(1.0, 0.0, 0.0));
+	map = new Map(5, 5, 5);
+	player1 = new HumanPlayer(3, 3, EAST, map->getTop(), Color(0.5, 0.5, 0.5));
 }
 
 SuperGame::~SuperGame() {
@@ -23,7 +23,7 @@ SuperGame::~SuperGame() {
 
 void SuperGame::display() {
 	glLoadIdentity();
-	gluLookAt(-8.0, 8.0, -8.0,  0.0, 0.0, 0.0,  0.0, 1.0, 0.0);
+	gluLookAt(8.0, 8.0, -8.0,  0.0, 0.0, 0.0,  0.0, 1.0, 0.0);
 	glColor3f(1.0, 1.0, 1.0);
 	map->display();
 }
@@ -41,7 +41,9 @@ void SuperGame::keyboardDown(unsigned char key) {
 }
 
 void SuperGame::keyboardSpecialUp(int key) {
+	player1->keyboardSpecialUp(key);
 }
 
 void SuperGame::keyboardSpecialDown(int key) {
+	player1->keyboardSpecialDown(key);
 }

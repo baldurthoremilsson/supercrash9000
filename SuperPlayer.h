@@ -26,6 +26,7 @@ class SuperPlayer: public SuperObject {
 		
 		int getRotation();
 		Edge getEdge();
+		void setAttributes(int newX, int newY, MapSide *newSide, Edge newDirection);
 		
 	public:
 		SuperPlayer(int x, int y, Edge dir, MapSide *mside, const Color &c);
@@ -33,6 +34,11 @@ class SuperPlayer: public SuperObject {
 		
 		virtual void display();
 		virtual void update(int time);
+		
+		void goWest();
+		void goEast();
+		void goNorth();
+		void goSouth();
 		
 		//friend PowerUp;
 };

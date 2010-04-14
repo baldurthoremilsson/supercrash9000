@@ -10,17 +10,23 @@ Map::Map(int x, int y, int z) {
 	Y = y;
 	Z = z;
 	
-	topSide = new MapSide(x,z);
+	/*topSide = new MapSide(x,z);
 	bottomSide = new MapSide(x,z);
 	frontSide = new MapSide(x,y);
 	backSide = new MapSide(x,y);
 	leftSide = new MapSide(z,y);
-	rightSide = new MapSide(z,y);
+	rightSide = new MapSide(z,y);*/
+	topSide = new MapSide(x,z, Color(1.0, 0.0, 0.0));
+	bottomSide = new MapSide(x,z, Color(1.0, 1.0, 0.0));
+	frontSide = new MapSide(x,y, Color(0.0, 0.0, 1.0));
+	backSide = new MapSide(x,y, Color(0.4, 0.0, 2.0));
+	leftSide = new MapSide(z,y, Color(1.0, 0.0, 1.0));
+	rightSide = new MapSide(z,y, Color(0.0, 1.0, 0.0));
 	
 	topSide->setNorth(backSide, NORTH);
 	topSide->setSouth(frontSide, NORTH);
-	topSide->setEast(leftSide, NORTH);
-	topSide->setWest(rightSide, NORTH);
+	topSide->setEast(rightSide, NORTH);
+	topSide->setWest(leftSide, NORTH);
 	
 	bottomSide->setNorth(frontSide, SOUTH);
 	bottomSide->setSouth(backSide, SOUTH);
@@ -82,28 +88,25 @@ MapSide* Map::getBack() {
 }
 
 void Map::display() {
-	glColor3f(1.0, 0.0, 0.0); // RED
+	
 	glPushMatrix();
 		glTranslatef(0.0, Y/2.0, 0.0);
 		topSide->display();
 	glPopMatrix();
 	
-	glColor3f(0.0, 1.0, 0.0); // GREEN
 	glPushMatrix();
 		glTranslatef(0.0, -Y/2.0, 0.0);
 		glRotatef(180.0, 1.0, 0.0, 0.0);
 		bottomSide->display();
 	glPopMatrix();
 	
-	glColor3f(0.0, 0.0, 1.0); // BLUE
 	glPushMatrix();
 		glTranslatef(-X/2.0, 0.0, 0.0);
-		glRotatef(270.0, 0.0, 1.0, 0.0);
-		glRotatef(90.0, 1.0, 0.0, 0.0);
+		glRotatef(-90.0, 0.0, 1.0, 0.0);
+		glRotatef( 90.0, 1.0, 0.0, 0.0);
 		leftSide->display();
 	glPopMatrix();
 	
-	glColor3f(1.0, 1.0, 0.0); // YELLOW
 	glPushMatrix();
 		glTranslatef(X/2.0, 0.0, 0.0);
 		glRotatef(90.0, 0.0, 1.0, 0.0);
@@ -111,17 +114,15 @@ void Map::display() {
 		rightSide->display();
 	glPopMatrix();
 	
-	glColor3f(0.0, 1.0, 1.0); // CYAN
 	glPushMatrix();
-		glTranslatef(0.0, 0.0, -Z/2.0);
-		glRotatef(180.0, 0.0, 1.0, 0.0);
+		glTranslatef(0.0, 0.0, Z/2.0);
 		glRotatef(90.0, 1.0, 0.0, 0.0);
 		frontSide->display();
 	glPopMatrix();
 	
-	glColor3f(1.0, 0.0, 1.0); // MAGENTA
 	glPushMatrix();
-		glTranslatef(0.0, 0.0, Z/2.0);
+		glTranslatef(0.0, 0.0, -Z/2.0);
+		glRotatef(180.0, 0.0, 1.0, 0.0);
 		glRotatef(90.0, 1.0, 0.0, 0.0);
 		backSide->display();
 	glPopMatrix();

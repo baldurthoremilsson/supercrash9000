@@ -3,7 +3,9 @@
 #include "SuperPlayer.h"
 #include "Color.h"
 #include <cstddef>
+#include <iostream>
 #include <GL/gl.h>
+#include <GL/glut.h>
 
 using namespace std;
 
@@ -25,6 +27,143 @@ SuperPlayer::SuperPlayer(int x, int y, Edge dir, MapSide *mside, const Color &c)
 
 SuperPlayer::~SuperPlayer() {
 }
+
+void SuperPlayer::goWest() {
+	int farX;
+	int farY;
+	if(X == 1) {
+		MapSide *farSide = side->getSide(WEST);
+		Edge farDirection;
+		switch(side->getEdge(WEST)) {
+			case NORTH:
+				farX = farSide->getX() - (Y-1);
+				farY = farSide->getY();
+				farDirection = SOUTH;
+				break;
+			case SOUTH:
+				farX = Y;
+				farY = 1;
+				farDirection = NORTH;
+				break;
+			case WEST:
+				farX = 1;
+				farY = farSide->getY() - (Y-1);
+				farDirection = EAST;
+				break;
+			case EAST:
+				farX = farSide->getX();
+				farY = Y;
+				farDirection = WEST;
+				break;
+		}
+		this->setAttributes(farX, farY, farSide, farDirection);
+	}
+	else
+		X--;
+}
+
+void SuperPlayer::goEast() {
+	int farX;
+	int farY;
+	if(X == side->getX()) {
+		MapSide *farSide = side->getSide(EAST);
+		Edge farDirection;
+		switch(side->getEdge(EAST)) {
+			case NORTH:
+				farX = Y;
+				farY = farSide->getY();
+				farDirection = SOUTH;
+				break;
+			case SOUTH:
+				farX = farSide->getX() - (Y-1);
+				farY = 1;
+				farDirection = NORTH;
+				break;
+			case WEST:
+				farX = 1;
+				farY = Y;
+				farDirection = EAST;
+				break;
+			case EAST:
+				farX = farSide->getX();
+				farY = farSide->getY() - (Y-1);
+				farDirection = WEST;
+				break;
+		}
+		this->setAttributes(farX, farY, farSide, farDirection);
+	}
+	else
+		X++;
+}
+
+void SuperPlayer::goNorth() {
+	int farX;
+	int farY;
+	if(Y == side->getY()) {
+		MapSide *farSide = side->getSide(NORTH);
+		Edge farDirection;
+		switch(side->getEdge(NORTH)) {
+			case NORTH:
+				farX = farSide->getX() - (X-1);
+				farY = farSide->getY();
+				farDirection = SOUTH;
+				break;
+			case SOUTH:
+				farX = X;
+				farY = 1;
+				farDirection = NORTH;
+				break;
+			case WEST:
+				farX = 1;
+				farY = farSide->getY() - (X-1);
+				farDirection = EAST;
+				break;
+			case EAST:
+				farX = farSide->getX();
+				farY = X;
+				farDirection = WEST;
+				break;
+		}
+		this->setAttributes(farX, farY, farSide, farDirection);
+	}
+	else
+		Y++;
+}
+
+void SuperPlayer::goSouth() {
+	int farX;
+	int farY;
+	if(Y == 1) {
+		MapSide *farSide = side->getSide(SOUTH);
+		Edge farDirection;
+		switch(side->getEdge(SOUTH)) {
+			case NORTH:
+				farX = X;
+				farY = farSide->getY();
+				farDirection = SOUTH;
+				break;
+			case SOUTH:
+				farX = farSide->getX() - (X-1);
+				farY = 1;
+				farDirection = NORTH;
+				break;
+			case WEST:
+				farX = 1;
+				farY = X;
+				farDirection = EAST;
+				break;
+			case EAST:
+				farX = farSide->getX();
+				farY = farSide->getY() - (X-1);
+				farDirection = WEST;
+				break;
+		}
+		this->setAttributes(farX, farY, farSide, farDirection);
+	}
+	else
+		Y--;
+}
+
 
 int SuperPlayer::getRotation() {
 	if(direction == NORTH && speed >= 0.0)
@@ -48,11 +187,22 @@ Edge SuperPlayer::getEdge() {
 		return WEST;
 }
 
+void SuperPlayer::setAttributes(int newX, int newY, MapSide *newSide, Edge newDirection) {
+	X = newX;
+	Y = newY;
+	direction = newDirection;
+	side->removeObject(this);
+	side = newSide;
+	side->addObject(this);
+}
+
 void SuperPlayer::display() {
 	glColor3fv(color.get3fv());
 	glPushMatrix();
-		glRotatef(this->getRotation(), 0.0, -1.0, 0.0);
-		glTranslatef((X-side->getX())/2.0, 0.0, (Y-side->getY())/2.0);
+		//glRotatef(this->getRotation(), 0.0, -1.0, 0.0);
+		glTranslatef(X-side->getX()/2.0-0.5, 0.0, -(Y-side->getY()/2.0-0.5));
+		glutSolidSphere(0.2, 10, 10);
+		/*
 		glBegin(GL_TRIANGLE_STRIP);
 			glVertex3f( 0.0,  0.0, offset+0.0);
 			glVertex3f( 0.0,  0.5, offset-1.0);
@@ -60,12 +210,14 @@ void SuperPlayer::display() {
 			glVertex3f( 0.25, 0.0, offset-1.0);
 			glVertex3f( 0.0,  0.0, offset+0.0);
 		glEnd();
+		*/
 	glPopMatrix();
+	
+	std::cout << X-side->getX()/2.0-0.5 << "," << Y-side->getY()/2.0-0.5 << std::endl;
 }
 
-#include <iostream>
-
 void SuperPlayer::update(int time) {
+	return;
 	std::cout << offset << "\n";
 	// todo: PowerUp updates
 	offset += speed * (time-lastUpdate)/1000.0;
