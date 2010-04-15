@@ -138,7 +138,7 @@ void HighScore::keyboardDown(unsigned char key) {
 	
 	if (mode == 0 && key == 27 /* ESC */) { 
 		cout << "Let's go from High Scores back to main menu now\n";
-		SuperCrash::getInstance()->setCurrent(0);
+		SuperCrash::getInstance()->showMainMenu();
 	}
 	
 }

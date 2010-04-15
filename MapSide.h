@@ -9,6 +9,9 @@
 #include <list>
 #include <GL/gl.h>
 
+#define WALLHEIGHT 0.5
+#define WALLWIDTH  0.2
+
 using namespace std;
 
 enum Edge {
@@ -39,7 +42,10 @@ class MapSide: public SuperObject {
 		MapPoint **points;
 		list<SuperObject*> objects;
 		
+		void displayWall(float *a, float *b, float *c, float *d, float *e, float *f, float *g, float *h);
+		
 	public:
+		MapSide(int x, int y);
 		MapSide(int x, int y, Color panel);
 		~MapSide();
 		
@@ -60,6 +66,8 @@ class MapSide: public SuperObject {
 		
 		void addObject(SuperObject *o);
 		void removeObject(SuperObject *o);
+		
+		bool wallOnPoint(int x, int y);
 		
 		void display();
 		void update(int time);

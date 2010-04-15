@@ -14,9 +14,6 @@ SuperCrash::SuperCrash(): SuperEngine() {
 	about = new About();
 
 	current = mainMenu;
-	//current = superGame;
-	//current = highScore;
-	//highScore->setScore(100);
 }
 
 SuperCrash::~SuperCrash() {
@@ -31,6 +28,10 @@ SuperCrash* SuperCrash::getInstance() {
 	return (SuperCrash*)instance;
 }
 
+SuperGame* SuperCrash::getGame() {
+	return superGame;
+}
+
 void SuperCrash::display() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	current->display();
@@ -38,7 +39,7 @@ void SuperCrash::display() {
 }
 
 void SuperCrash::update(int time) {
-	current->update(time - lastUpdate);
+	current->update(time);
 	glutPostRedisplay();
 	sleep();
 }
@@ -60,9 +61,9 @@ void SuperCrash::keyboardSpecialDown(int key) {
 }
 
 void SuperCrash::setCurrent(int n) {
-	if (n==0)
-		current = mainMenu;
-	if (n==1)
+	if (n==0) {
+		superGame->gameOver();
+	} if (n==1)
 		current = superGame;
 	if (n==2)
 		current = highScore;
@@ -73,3 +74,18 @@ void SuperCrash::setCurrent(int n) {
 	if (n==5)
 		current = about;
 }
+
+void SuperCrash::startNewGame() {
+	delete superGame;
+	current = superGame = new SuperGame();
+}
+
+void SuperCrash::showMainMenu() {
+	current = mainMenu;
+}
+
+void SuperCrash::showHighscore(int score) {
+	highScore->setScore(score);
+	current = highScore;
+}
+

@@ -46,6 +46,6 @@ void Color::setColor(float r, float g, float b) {
 	colors[BLUE] = b;
 }
 
-const float* Color::get3fv() {
+const float* Color::get3fv() const {
 	return colors;
 }

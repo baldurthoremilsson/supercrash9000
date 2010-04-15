@@ -12,8 +12,13 @@
 using namespace std;
 
 SuperGame::SuperGame() {
-	map = new Map(5, 5, 5);
-	player1 = new HumanPlayer(3, 3, EAST, map->getTop(), Color(0.5, 0.5, 0.5));
+	map = NULL;
+	player1 = NULL;
+	
+	score = 0;
+	lastUpdate = -1;
+	
+	startAnotherGame();
 }
 
 SuperGame::~SuperGame() {
@@ -21,15 +26,33 @@ SuperGame::~SuperGame() {
 	delete player1;
 }
 
+void SuperGame::startAnotherGame() {
+	delete map;
+	delete player1;
+	
+	map = new Map(5,5,5);
+	player1 = new HumanPlayer(2, 3, EAST, map->getTop(), Color(1.0, 0.0, 0.0));
+}
+
+void SuperGame::gameOver() {
+	SuperCrash::getInstance()->showHighscore(score);
+	score = 0;
+	lastUpdate = -1;
+	startAnotherGame();
+}
+
 void SuperGame::display() {
 	glLoadIdentity();
-	gluLookAt(8.0, 8.0, -8.0,  0.0, 0.0, 0.0,  0.0, 1.0, 0.0);
+	gluLookAt(6.0, 6.0, -6.0,  0.0, 0.0, 0.0,  0.0, 1.0, 0.0);
 	glColor3f(1.0, 1.0, 1.0);
 	map->display();
 }
 
 void SuperGame::update(int time) {
+	if(lastUpdate > 0)
+		score += time - lastUpdate;
 	player1->update(time);
+	lastUpdate = time;
 }
 
 void SuperGame::keyboardUp(unsigned char key) {

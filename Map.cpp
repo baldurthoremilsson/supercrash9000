@@ -10,18 +10,20 @@ Map::Map(int x, int y, int z) {
 	Y = y;
 	Z = z;
 	
-	/*topSide = new MapSide(x,z);
+	topSide = new MapSide(x,z);
 	bottomSide = new MapSide(x,z);
 	frontSide = new MapSide(x,y);
 	backSide = new MapSide(x,y);
 	leftSide = new MapSide(z,y);
-	rightSide = new MapSide(z,y);*/
+	rightSide = new MapSide(z,y);
+	/*
 	topSide = new MapSide(x,z, Color(1.0, 0.0, 0.0));
 	bottomSide = new MapSide(x,z, Color(1.0, 1.0, 0.0));
 	frontSide = new MapSide(x,y, Color(0.0, 0.0, 1.0));
 	backSide = new MapSide(x,y, Color(0.4, 0.0, 2.0));
 	leftSide = new MapSide(z,y, Color(1.0, 0.0, 1.0));
 	rightSide = new MapSide(z,y, Color(0.0, 1.0, 0.0));
+	*/
 	
 	topSide->setNorth(backSide, NORTH);
 	topSide->setSouth(frontSide, NORTH);

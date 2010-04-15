@@ -4,30 +4,27 @@
 #define _SUPERPOWERUP_H
 
 #include "SuperObject.h"
-#include "SuperPlayer.h"
 
-using namespace std;
+class SuperPlayer;
 
 class SuperPowerup : public SuperObject {
 	protected:
-		SuperPlayer *player;
-		int ttlSide;
-		int ttlPlayer;
-		int t;
-		virtual void updatePlayer()=0;
-		virtual void updateSide()=0;
+		int timeToLive;
+		int lastUpdate;
+		
 	public:
-		SuperPowerup();
+		SuperPowerup(int time);
 		virtual ~SuperPowerup();
+		
 		void update(int time);
-		virtual void display()=0;
+		bool isAlive();
+		void snatched(int time);
+		virtual void updatePlayer(int time, SuperPlayer *player) = 0;
+		
 		void keyboardUp(unsigned char key) {}
 		void keyboardDown(unsigned char key) {}
 		void keyboardSpecialUp(int key) {}
 		void keyboardSpecialDown(int key) {}
-		int alive;
-		SuperPlayer *getPlayer();
-		void setPlayer(SuperPlayer *pl);
 
 };
 

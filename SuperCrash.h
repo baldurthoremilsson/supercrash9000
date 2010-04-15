@@ -28,6 +28,8 @@ class SuperCrash: public SuperEngine {
 		
 		static SuperCrash* getInstance();
 		
+		SuperGame* getGame();
+		
 		void display();
 		void update(int time);
 		void keyboardUp(unsigned char key);
@@ -36,6 +38,9 @@ class SuperCrash: public SuperEngine {
 		void keyboardSpecialDown(int key);
 
 		void setCurrent(int n);
+		void startNewGame();
+		void showMainMenu();
+		void showHighscore(int score);
 };
 
 #endif

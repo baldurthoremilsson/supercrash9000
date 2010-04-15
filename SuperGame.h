@@ -14,9 +14,15 @@ class SuperGame: public SuperObject {
 		Map *map;
 		SuperPlayer *player1;
 		
+		int score;
+		int lastUpdate;
+		
 	public:
 		SuperGame();
 		~SuperGame();
+		
+		void startAnotherGame();
+		void gameOver();
 		
 		void display();
 		void update(int time);

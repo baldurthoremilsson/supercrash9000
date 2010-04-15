@@ -14,7 +14,7 @@ using namespace std;
 PauseMenu::PauseMenu() {
 	menuTitle = "    PAUSED";
 	menuItemVector.push_back("Resume game");
-	menuItemVector.push_back("Exit to main menu");
+	menuItemVector.push_back("Quit grid");
 	
 	calibrate();
 }

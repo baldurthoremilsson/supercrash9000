@@ -10,6 +10,7 @@ class HumanPlayer: public SuperPlayer {
 		HumanPlayer(int x, int y, Edge dir, MapSide *mside, const Color &c);
 		~HumanPlayer();
 		
+		void update(int time);
 		void keyboardUp(unsigned char key);
 		void keyboardDown(unsigned char key);
 		void keyboardSpecialUp(int key);

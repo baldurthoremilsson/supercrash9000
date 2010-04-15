@@ -23,7 +23,7 @@ class Color {
 		float getGreen() const;
 		float getBlue() const;
 		
-		const float* get3fv();
+		const float* get3fv() const;
 };
 
 #endif

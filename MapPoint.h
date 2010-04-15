@@ -3,22 +3,22 @@
 #ifndef _MAPPOINT_H
 #define _MAPPOINT_H
 
-#include "SuperObject.h"
 #include "Color.h"
+#include "SuperPowerup.h"
 
 class MapPoint {
 	private:
 		Color *horiz;
 		Color *vert;
 		
-		SuperObject *object;
+		SuperPowerup *powerup;
 		
 	public:
 		MapPoint();
 		~MapPoint();
 		
-		SuperObject *getObject();
-		void setObject(SuperObject *obj);
+		SuperPowerup* getPowerup();
+		void setPowerup(SuperPowerup *spu);
 		
 		void setHorizWall(const Color &c);
 		void setVertWall(const Color &c);

@@ -2,6 +2,7 @@
 
 #include "MapPoint.h"
 #include "Color.h"
+#include "SuperPowerup.h"
 #include <cstddef>
 
 using namespace std;
@@ -9,6 +10,7 @@ using namespace std;
 MapPoint::MapPoint() {
 	horiz = NULL;
 	vert = NULL;
+	powerup = NULL;
 }
 
 MapPoint::~MapPoint() {
@@ -16,11 +18,11 @@ MapPoint::~MapPoint() {
 	delete vert;
 }
 
-SuperObject* MapPoint::getObject() {
-	return object;
+SuperPowerup* MapPoint::getPowerup() {
+	return powerup;
 }
-void MapPoint::setObject(SuperObject *obj) {
-	object = obj;
+void MapPoint::setPowerup(SuperPowerup *spu) {
+	powerup = spu;
 }
 
 void MapPoint::setHorizWall(const Color &c) {
